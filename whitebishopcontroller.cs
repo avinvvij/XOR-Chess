@@ -7,9 +7,10 @@ public class whitebishopcontroller : MonoBehaviour {
 	public Vector3 currentposition;
 	public int xpos;
 	public int ypos;
+    public int status;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -41,5 +42,7 @@ public class whitebishopcontroller : MonoBehaviour {
 	public void setypos(int y){
 		this.ypos = y;
 	}
+
+    
 
 }

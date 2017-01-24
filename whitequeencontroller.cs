@@ -7,9 +7,10 @@ public class whitequeencontroller : MonoBehaviour {
 	public Vector3 currentposition;
 	public int xpos;
 	public int ypos;
+    public int status;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -43,4 +44,12 @@ public class whitequeencontroller : MonoBehaviour {
 		this.ypos = y;
 	}
 
+    public void OnCollisionEnter(Collision collision)
+    {
+        chesscontroller cc = GameObject.FindGameObjectWithTag("controller").GetComponent<chesscontroller>();
+        if (cc.getselectedgameobject().Equals(gameObject))
+        {
+            Destroy(collision.gameObject);
+        }
+    }
 }

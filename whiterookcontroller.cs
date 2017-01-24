@@ -6,6 +6,7 @@ public class whiterookcontroller : MonoBehaviour {
 	public Vector3 currentposition;
 	public int xpos;
 	public int ypos;
+    public int status;
 	// Use this for initialization
 	void Start () {
 		
@@ -39,5 +40,7 @@ public class whiterookcontroller : MonoBehaviour {
 	public void setypos(int y){
 		ypos = y;
 	}
+
+   
 
 }

@@ -7,10 +7,11 @@ public class pawncontroller : MonoBehaviour {
 	public int xpos;
 	public int ypos;
 	bool firstplay = true;
+    public int status;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -52,4 +53,7 @@ public class pawncontroller : MonoBehaviour {
 	public void setypos(int y){
 		this.ypos = y;
 	}
+
+   
+
 }
