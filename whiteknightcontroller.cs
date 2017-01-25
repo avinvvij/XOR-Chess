@@ -43,6 +43,9 @@ public class whiteknightcontroller : MonoBehaviour {
 		this.ypos = y;
 	}
 
-    
+    public int getstatus()
+    {
+        return this.status;
+    }
 
 }

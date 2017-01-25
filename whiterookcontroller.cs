@@ -41,6 +41,9 @@ public class whiterookcontroller : MonoBehaviour {
 		ypos = y;
 	}
 
-   
+    public int getstatus()
+    {
+        return this.status;
+    }
 
 }

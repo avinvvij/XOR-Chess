@@ -54,6 +54,9 @@ public class pawncontroller : MonoBehaviour {
 		this.ypos = y;
 	}
 
-   
+   public int getstatus()
+    {
+        return this.status;
+    }
 
 }

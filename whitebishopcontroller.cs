@@ -43,6 +43,10 @@ public class whitebishopcontroller : MonoBehaviour {
 		this.ypos = y;
 	}
 
+    public int getstatus()
+    {
+        return this.status;
+    }
     
 
 }

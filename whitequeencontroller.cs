@@ -44,12 +44,9 @@ public class whitequeencontroller : MonoBehaviour {
 		this.ypos = y;
 	}
 
-    public void OnCollisionEnter(Collision collision)
+  
+    public int getstatus()
     {
-        chesscontroller cc = GameObject.FindGameObjectWithTag("controller").GetComponent<chesscontroller>();
-        if (cc.getselectedgameobject().Equals(gameObject))
-        {
-            Destroy(collision.gameObject);
-        }
+        return this.status;
     }
 }
