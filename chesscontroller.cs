@@ -15,13 +15,15 @@
 		GameObject selectedobject;
 		Hashtable ht;
 		bool whiteplay = true;
-        public float timeoftransition=1.0f; 
+        public float timeoftransition=1.0f;
+        GameObject whiteking; 
         
 
 		// Use this for initialization
 		void Start () {
 			ht = new Hashtable ();
-			Vector3 topleft = new Vector3 (-20.9f, 0.3023f, 21.02f);
+            whiteking = GameObject.FindGameObjectWithTag("whiteking");
+            Vector3 topleft = new Vector3 (-20.9f, 0.3023f, 21.02f);
 
 			boardvectors = new Vector3[8, 8];
 			upperranges = new Vector3[8, 8];
@@ -62,6 +64,7 @@
                             chesspositions[i, j] = 8;
                             break;
                         case 4:
+                            chesspositions[i, j] = 21;
                             break;
 
                     }
@@ -88,6 +91,7 @@
                             chesspositions[i, j] = 3;
                             break;
                         case 4:
+                            chesspositions[i, j] = 20;
                             break;
 
                     }
@@ -99,7 +103,7 @@
 				}
 			}
 
-            printchesspositions();
+            //printchesspositions();
 		}
 		
 		// Update is called once per frame
@@ -196,6 +200,7 @@
                                 for (int i = 0; i < temps.Length; i++)
                                     Destroy(temps[i]);
                                 whiteplay = true;
+                                whiteking.GetComponent<whitekingcontroller>().checkwhitecheck(whiteking.GetComponent<whitekingcontroller>().getxpos() , whiteking.GetComponent<whitekingcontroller>().getypos());
                         }
 
                             else if (selectedobject.tag == "whiterook") {
@@ -276,7 +281,8 @@
                             for (int i = 0; i < temps.Length; i++)
                                 Destroy(temps[i]);
                             whiteplay = true;
-                        }
+                        whiteking.GetComponent<whitekingcontroller>().checkwhitecheck(whiteking.GetComponent<whitekingcontroller>().getxpos(), whiteking.GetComponent<whitekingcontroller>().getypos());
+                    }
 
                         else if (selectedobject.tag == "whitebishop") {
                             //move the white bishop
@@ -358,7 +364,8 @@
                             for (int i = 0; i < temps.Length; i++)
                                 Destroy(temps[i]);
                             whiteplay = true;
-                        }
+                        whiteking.GetComponent<whitekingcontroller>().checkwhitecheck(whiteking.GetComponent<whitekingcontroller>().getxpos(), whiteking.GetComponent<whitekingcontroller>().getypos());
+                    }
 
                         else if (selectedobject.tag == "whitequeen") {
                             // move the white queen
@@ -438,7 +445,8 @@
                             for (int i = 0; i < temps.Length; i++)
                                 Destroy(temps[i]);
                             whiteplay = true;
-                        }
+                        whiteking.GetComponent<whitekingcontroller>().checkwhitecheck(whiteking.GetComponent<whitekingcontroller>().getxpos(), whiteking.GetComponent<whitekingcontroller>().getypos());
+                    }
                         else if (selectedobject.tag == "whiteknight") {
                             for (int i = 0; i < 8; i++) {
                                 for (int j = 0; j < 8; j++) {
@@ -515,9 +523,10 @@
                             for (int i = 0; i < temps.Length; i++)
                                 Destroy(temps[i]);
                             whiteplay = true;
-                        }
+                        whiteking.GetComponent<whitekingcontroller>().checkwhitecheck(whiteking.GetComponent<whitekingcontroller>().getxpos(), whiteking.GetComponent<whitekingcontroller>().getypos());
+                    }
 
-                    printchesspositions();
+                    //printchesspositions();
 
                     }
 					if (hit.collider.tag == "whitepawn" && whiteplay == true) {
@@ -876,12 +885,12 @@
         //top possiblepositions
         try
         {
-            while (chesspositions[wrc.getxpos() + count, wrc.getypos()] != 2)
+            while (chesspositions[wrc.getxpos() + count, wrc.getypos()] < 6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x, currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                 temp.tag = "possibleposition";
-                if (chesspositions[wrc.getxpos() + count, wrc.getypos()] == 1)
+                if (chesspositions[wrc.getxpos() + count, wrc.getypos()] >= 1 && chesspositions[wrc.getxpos() + count, wrc.getypos()] <= 5)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x, currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -898,12 +907,12 @@
         try
         {
             count = 1;
-            while (chesspositions[wrc.getxpos() - count, wrc.getypos()] != 2)
+            while (chesspositions[wrc.getxpos() - count, wrc.getypos()] < 6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x, currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                 temp.tag = "possibleposition";
-                if (chesspositions[wrc.getxpos() - count, wrc.getypos()] ==1)
+                if (chesspositions[wrc.getxpos() - count, wrc.getypos()] >=1 && chesspositions[wrc.getxpos() - count, wrc.getypos()] <= 5)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x, currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -920,12 +929,12 @@
         try
         {
             count = 1;
-            while (chesspositions[wrc.getxpos(), wrc.getypos() + count] != 2)
+            while (chesspositions[wrc.getxpos(), wrc.getypos() + count] < 6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x + (6 * count), currentpos.y, currentpos.z), Quaternion.Euler(0f, 0f, 0f));
                 temp.tag = "possibleposition";
-                if (chesspositions[wrc.getxpos(), wrc.getypos() + count] ==1)
+                if (chesspositions[wrc.getxpos(), wrc.getypos() + count] >= 1 && chesspositions[wrc.getxpos(), wrc.getypos() + count] <= 5)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x + (6 * count), currentpos.y, currentpos.z), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -942,12 +951,12 @@
         try
         {
             count = 1;
-            while (chesspositions[wrc.getxpos(), wrc.getypos() - count] != 2)
+            while (chesspositions[wrc.getxpos(), wrc.getypos() - count] < 6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z), Quaternion.Euler(0f, 0f, 0f));
                 temp.tag = "possibleposition";
-                if (chesspositions[wrc.getxpos(), wrc.getypos() - count] == 1)
+                if (chesspositions[wrc.getxpos(), wrc.getypos() - count] >= 1 && chesspositions[wrc.getxpos(), wrc.getypos() - count] <=5)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -1061,12 +1070,12 @@
         //top possiblepositions
         try
         {
-            while (chesspositions[wbc.getxpos() + count, wbc.getypos() - count] != 2)
+            while (chesspositions[wbc.getxpos() + count, wbc.getypos() - count] < 6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                 temp.tag = "possibleposition";
-                if (chesspositions[wbc.getxpos() + count, wbc.getypos() - count] == 1)
+                if (chesspositions[wbc.getxpos() + count, wbc.getypos() - count] >= 1 && chesspositions[wbc.getxpos() + count, wbc.getypos() - count] <= 5)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -1082,12 +1091,12 @@
         try
         {
             count = 1;
-            while (chesspositions[wbc.getxpos() + count, wbc.getypos() + count] != 2)
+            while (chesspositions[wbc.getxpos() + count, wbc.getypos() + count] < 6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x + (6 * count), currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                 temp.tag = "possibleposition";
-                if (chesspositions[wbc.getxpos() + count, wbc.getypos() + count] == 1)
+                if (chesspositions[wbc.getxpos() + count, wbc.getypos() + count] >= 1 && chesspositions[wbc.getxpos() + count, wbc.getypos() + count] <= 5)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x + (6 * count), currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -1103,12 +1112,12 @@
         try
         {
             count = 1;
-            while (chesspositions[wbc.getxpos() - count, wbc.getypos() + count] != 2)
+            while (chesspositions[wbc.getxpos() - count, wbc.getypos() + count] < 6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x + (6 * count), currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                 temp.tag = "possibleposition";
-                if (chesspositions[wbc.getxpos() - count, wbc.getypos() + count] == 1)
+                if (chesspositions[wbc.getxpos() - count, wbc.getypos() + count] >= 1 && chesspositions[wbc.getxpos() - count, wbc.getypos() + count] <= 5)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x + (6 * count), currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -1125,12 +1134,12 @@
         try
         {
             count = 1;
-            while (chesspositions[wbc.getxpos() - count, wbc.getypos() - count] != 2)
+            while (chesspositions[wbc.getxpos() - count, wbc.getypos() - count] < 6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                 temp.tag = "possibleposition";
-                if (chesspositions[wbc.getxpos() - count, wbc.getypos() - count] == 1)
+                if (chesspositions[wbc.getxpos() - count, wbc.getypos() - count] >= 1 && chesspositions[wbc.getxpos() - count, wbc.getypos() - count] <= 5)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -1156,11 +1165,12 @@
 			int count = 1;
 			//top possiblepositions
 			try{
-				while(chesspositions[wqc.getxpos()-count , wqc.getypos()+count]!=1){
+				while(chesspositions[wqc.getxpos()-count , wqc.getypos()+count]<1 || chesspositions[wqc.getxpos() - count, wqc.getypos() + count] > 5)
+            {
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x+(6*count) , currentpos.y , currentpos.z + (6*count)), Quaternion.Euler (0f, 0f, 0f));
 					temp.tag = "possibleposition";
-                if (chesspositions[wqc.getxpos() - count, wqc.getypos() + count] == 2)
+                if (chesspositions[wqc.getxpos() - count, wqc.getypos() + count] >= 6 && chesspositions[wqc.getxpos() - count, wqc.getypos() + count] <= 10)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x + (6 * count), currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -1173,11 +1183,12 @@
 			}
 			try{
 				count = 1;
-				while(chesspositions[wqc.getxpos()-count , wqc.getypos()-count]!=1){
+				while(chesspositions[wqc.getxpos()-count , wqc.getypos()-count]< 1 || chesspositions[wqc.getxpos() - count, wqc.getypos() - count] > 5)
+            {
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x-(6*count) , currentpos.y , currentpos.z + (6*count)), Quaternion.Euler (0f, 0f, 0f));
 					temp.tag = "possibleposition";
-                if (chesspositions[wqc.getxpos() - count, wqc.getypos() - count] == 2)
+                if (chesspositions[wqc.getxpos() - count, wqc.getypos() - count] >= 6 && chesspositions[wqc.getxpos() - count, wqc.getypos() - count] <= 10)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -1190,11 +1201,12 @@
 			}
 			try{
 				count = 1;
-				while(chesspositions[wqc.getxpos()+count , wqc.getypos()-count]!=1){
+				while(chesspositions[wqc.getxpos()+count , wqc.getypos()-count] < 1 || chesspositions[wqc.getxpos() + count, wqc.getypos() - count] > 5 )
+            {
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x-(6*count) , currentpos.y , currentpos.z - (6*count)), Quaternion.Euler (0f, 0f, 0f));
 					temp.tag = "possibleposition";
-                if (chesspositions[wqc.getxpos() + count, wqc.getypos() - count] == 2)
+                if (chesspositions[wqc.getxpos() + count, wqc.getypos() - count] >= 6 && chesspositions[wqc.getxpos() + count, wqc.getypos() - count] <= 10)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -1208,11 +1220,12 @@
 
 			try{
 				count = 1;
-				while(chesspositions[wqc.getxpos()+count , wqc.getypos()+count]!=1){
+				while(chesspositions[wqc.getxpos()+count , wqc.getypos()+count] < 1 || chesspositions[wqc.getxpos() + count, wqc.getypos() + count] > 5)
+            {
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x+(6*count) , currentpos.y , currentpos.z - (6*count)), Quaternion.Euler (0f, 0f, 0f));
 					temp.tag = "possibleposition";
-                if (chesspositions[wqc.getxpos() + count, wqc.getypos() + count] == 2)
+                if (chesspositions[wqc.getxpos() + count, wqc.getypos() + count] >= 6 && chesspositions[wqc.getxpos() + count, wqc.getypos() + count] <= 10)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x + (6 * count), currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -1226,11 +1239,12 @@
 
 			try{
 				count = 1;
-				while(chesspositions[wqc.getxpos()-count , wqc.getypos()]!=1){
+				while(chesspositions[wqc.getxpos()-count , wqc.getypos()]<1 || chesspositions[wqc.getxpos() - count, wqc.getypos()] > 5)
+            {
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x , currentpos.y , currentpos.z + (6*count)), Quaternion.Euler (0f, 0f, 0f));
 					temp.tag = "possibleposition";
-                if (chesspositions[wqc.getxpos() - count, wqc.getypos()] == 2)
+                if (chesspositions[wqc.getxpos() - count, wqc.getypos()] >= 6 && chesspositions[wqc.getxpos() - count, wqc.getypos()] <= 10)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x, currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -1243,11 +1257,12 @@
 			}
 			try{
 				count = 1;
-				while(chesspositions[wqc.getxpos()+count , wqc.getypos()]!=1){
+				while(chesspositions[wqc.getxpos()+count , wqc.getypos()] < 1 || chesspositions[wqc.getxpos() + count, wqc.getypos()] > 5)
+            {
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x , currentpos.y , currentpos.z - (6*count)), Quaternion.Euler (0f, 0f, 0f));
 					temp.tag = "possibleposition";
-                if (chesspositions[wqc.getxpos() + count, wqc.getypos()] == 2)
+                if (chesspositions[wqc.getxpos() + count, wqc.getypos()] >= 6 && chesspositions[wqc.getxpos() + count, wqc.getypos()] <= 10)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x, currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -1260,11 +1275,12 @@
 			}
 			try{
 				count = 1;
-				while(chesspositions[wqc.getxpos() , wqc.getypos()-count]!=1){
+				while(chesspositions[wqc.getxpos() , wqc.getypos()-count] < 1 || chesspositions[wqc.getxpos(), wqc.getypos() - count] > 5)
+            {
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x - (6*count), currentpos.y , currentpos.z ), Quaternion.Euler (0f, 0f, 0f));
 					temp.tag = "possibleposition";
-                if (chesspositions[wqc.getxpos(), wqc.getypos() - count] == 2)
+                if (chesspositions[wqc.getxpos(), wqc.getypos() - count] >= 6 && chesspositions[wqc.getxpos(), wqc.getypos() - count] <= 10)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -1277,11 +1293,12 @@
 			}
 			try{
 				count = 1;
-				while(chesspositions[wqc.getxpos() , wqc.getypos()+count]!=1){
+				while(chesspositions[wqc.getxpos() , wqc.getypos()+count] < 1 || chesspositions[wqc.getxpos(), wqc.getypos() + count] > 5)
+            {
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x + (6*count), currentpos.y , currentpos.z ), Quaternion.Euler (0f, 0f, 0f));
 					temp.tag = "possibleposition";
-                if (chesspositions[wqc.getxpos(), wqc.getypos() + count] == 2)
+                if (chesspositions[wqc.getxpos(), wqc.getypos() + count] >= 6 && chesspositions[wqc.getxpos(), wqc.getypos() + count] <= 10)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x + (6 * count), currentpos.y, currentpos.z), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -1308,12 +1325,12 @@
         //top possiblepositions
         try
         {
-            while (chesspositions[wqc.getxpos() + count, wqc.getypos() - count] != 2)
+            while (chesspositions[wqc.getxpos() + count, wqc.getypos() - count] < 6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                 temp.tag = "possibleposition";
-                if (chesspositions[wqc.getxpos() + count, wqc.getypos() - count] == 1)
+                if (chesspositions[wqc.getxpos() + count, wqc.getypos() - count] >= 1 && chesspositions[wqc.getxpos() + count, wqc.getypos() - count] <= 5)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -1329,12 +1346,12 @@
         try
         {
             count = 1;
-            while (chesspositions[wqc.getxpos() + count, wqc.getypos() + count] != 2)
+            while (chesspositions[wqc.getxpos() + count, wqc.getypos() + count] < 6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x + (6 * count), currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                 temp.tag = "possibleposition";
-                if (chesspositions[wqc.getxpos() + count, wqc.getypos() + count] == 1)
+                if (chesspositions[wqc.getxpos() + count, wqc.getypos() + count] >=1 && chesspositions[wqc.getxpos() + count, wqc.getypos() + count] <= 5)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x + (6 * count), currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -1350,12 +1367,12 @@
         try
         {
             count = 1;
-            while (chesspositions[wqc.getxpos() - count, wqc.getypos() + count] != 2)
+            while (chesspositions[wqc.getxpos() - count, wqc.getypos() + count] < 6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x + (6 * count), currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                 temp.tag = "possibleposition";
-                if (chesspositions[wqc.getxpos() - count, wqc.getypos() + count] == 1)
+                if (chesspositions[wqc.getxpos() - count, wqc.getypos() + count] >= 1 && chesspositions[wqc.getxpos() - count, wqc.getypos() + count] <= 5)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x + (6 * count), currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -1372,12 +1389,12 @@
         try
         {
             count = 1;
-            while (chesspositions[wqc.getxpos() - count, wqc.getypos() - count] != 2)
+            while (chesspositions[wqc.getxpos() - count, wqc.getypos() - count] < 6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                 temp.tag = "possibleposition";
-                if (chesspositions[wqc.getxpos() - count, wqc.getypos() - count] == 1)
+                if (chesspositions[wqc.getxpos() - count, wqc.getypos() - count] >= 1 && chesspositions[wqc.getxpos() - count, wqc.getypos() - count] <= 5)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -1394,12 +1411,12 @@
         try
         {
             count = 1;
-            while (chesspositions[wqc.getxpos() + count, wqc.getypos()] != 2)
+            while (chesspositions[wqc.getxpos() + count, wqc.getypos()] < 6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x, currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                 temp.tag = "possibleposition";
-                if (chesspositions[wqc.getxpos() + count, wqc.getypos()] == 1)
+                if (chesspositions[wqc.getxpos() + count, wqc.getypos()] >= 1 && chesspositions[wqc.getxpos() + count, wqc.getypos()] <= 5)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x, currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -1415,12 +1432,12 @@
         try
         {
             count = 1;
-            while (chesspositions[wqc.getxpos() - count, wqc.getypos()] != 2)
+            while (chesspositions[wqc.getxpos() - count, wqc.getypos()] < 6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x, currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                 temp.tag = "possibleposition";
-                if (chesspositions[wqc.getxpos() - count, wqc.getypos()] == 1)
+                if (chesspositions[wqc.getxpos() - count, wqc.getypos()] >= 1 && chesspositions[wqc.getxpos() - count, wqc.getypos()] <= 5)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x, currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -1436,12 +1453,12 @@
         try
         {
             count = 1;
-            while (chesspositions[wqc.getxpos(), wqc.getypos() + count] != 2)
+            while (chesspositions[wqc.getxpos(), wqc.getypos() + count] < 6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x + (6 * count), currentpos.y, currentpos.z), Quaternion.Euler(0f, 0f, 0f));
                 temp.tag = "possibleposition";
-                if (chesspositions[wqc.getxpos(), wqc.getypos() + count] == 1)
+                if (chesspositions[wqc.getxpos(), wqc.getypos() + count] >= 1 && chesspositions[wqc.getxpos(), wqc.getypos() + count] <= 5)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x + (6 * count), currentpos.y, currentpos.z), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -1457,12 +1474,12 @@
         try
         {
             count = 1;
-            while (chesspositions[wqc.getxpos(), wqc.getypos() - count] != 2)
+            while (chesspositions[wqc.getxpos(), wqc.getypos() - count] < 6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z), Quaternion.Euler(0f, 0f, 0f));
                 temp.tag = "possibleposition";
-                if (chesspositions[wqc.getxpos(), wqc.getypos() - count] == 1)
+                if (chesspositions[wqc.getxpos(), wqc.getypos() - count] >= 1 && chesspositions[wqc.getxpos(), wqc.getypos() - count] <= 5)
                 {
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
@@ -1486,15 +1503,17 @@
 			whiteknightcontroller wkc = hit.collider.gameObject.GetComponent<whiteknightcontroller> ();
 			Vector3 currentpos = wkc.getcurrentposition ();
 			try{
-			if(chesspositions[wkc.getxpos()-2 , wkc.getypos()+1] != 1){
+			if(chesspositions[wkc.getxpos()-2 , wkc.getypos()+1] < 1 || chesspositions[wkc.getxpos() - 2, wkc.getypos() + 1] > 5)
+            {
 				GameObject temp;
 				temp = Instantiate (possibleposition, new Vector3 (currentpos.x + 6f, currentpos.y , currentpos.z +12f), Quaternion.Euler (0f, 0f, 0f));
 				temp.tag = "possibleposition";
-				}
+			}
 			}catch(Exception e){
 			}
 			try{
-				if(chesspositions[wkc.getxpos()-2 , wkc.getypos()-1] != 1){
+				if(chesspositions[wkc.getxpos()-2 , wkc.getypos()-1] < 1 || chesspositions[wkc.getxpos() - 2, wkc.getypos() - 1] > 5)
+            {
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x - 6f, currentpos.y , currentpos.z +12f), Quaternion.Euler (0f, 0f, 0f));
 					temp.tag = "possibleposition";
@@ -1504,7 +1523,8 @@
 			}
 
 			try{
-				if(chesspositions[wkc.getxpos()-1 , wkc.getypos()-2] != 1){
+				if(chesspositions[wkc.getxpos()-1 , wkc.getypos()-2] < 1 || chesspositions[wkc.getxpos() - 1, wkc.getypos() - 2] > 5)
+            {
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x - 12f, currentpos.y , currentpos.z +6f), Quaternion.Euler (0f, 0f, 0f));
 					temp.tag = "possibleposition";
@@ -1513,7 +1533,8 @@
 
 			}
 			try{
-				if(chesspositions[wkc.getxpos()-1 , wkc.getypos()+2] != 1){
+				if(chesspositions[wkc.getxpos()-1 , wkc.getypos()+2] < 1 || chesspositions[wkc.getxpos() - 1, wkc.getypos() + 2] > 5)
+            {
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x + 12f, currentpos.y , currentpos.z +6f), Quaternion.Euler (0f, 0f, 0f));
 					temp.tag = "possibleposition";
@@ -1522,7 +1543,8 @@
 
 			}
 			try{
-				if(chesspositions[wkc.getxpos()+2 , wkc.getypos()+1] != 1){
+				if(chesspositions[wkc.getxpos()+2 , wkc.getypos()+1] < 1 || chesspositions[wkc.getxpos() + 2, wkc.getypos() + 1] > 5)
+            {
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x + 6f, currentpos.y , currentpos.z - 12f), Quaternion.Euler (0f, 0f, 0f));
 					temp.tag = "possibleposition";
@@ -1531,7 +1553,8 @@
 
 			}
 			try{
-				if(chesspositions[wkc.getxpos()+2 , wkc.getypos()-1] != 1){
+				if(chesspositions[wkc.getxpos()+2 , wkc.getypos()-1] < 1 || chesspositions[wkc.getxpos() + 2, wkc.getypos() - 1] > 5)
+            {
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x - 6f, currentpos.y , currentpos.z - 12f), Quaternion.Euler (0f, 0f, 0f));
 					temp.tag = "possibleposition";
@@ -1540,7 +1563,8 @@
 
 			}
 			try{
-				if(chesspositions[wkc.getxpos()+1 , wkc.getypos()+2] != 1){
+				if(chesspositions[wkc.getxpos()+1 , wkc.getypos()+2] < 1 || chesspositions[wkc.getxpos() + 1, wkc.getypos() + 2] > 5)
+            {
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x + 12f, currentpos.y , currentpos.z - 6f), Quaternion.Euler (0f, 0f, 0f));
 					temp.tag = "possibleposition";
@@ -1549,7 +1573,8 @@
 
 			}
 			try{
-				if(chesspositions[wkc.getxpos()+1 , wkc.getypos()-2] != 1){
+				if(chesspositions[wkc.getxpos()+1 , wkc.getypos()-2] < 1 || chesspositions[wkc.getxpos() + 1, wkc.getypos() - 2] > 5)
+            {
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x - 12f, currentpos.y , currentpos.z - 6f), Quaternion.Euler (0f, 0f, 0f));
 					temp.tag = "possibleposition";
@@ -1570,7 +1595,7 @@
         Vector3 currentpos = wkc.getcurrentposition();
         try
         {
-            if (chesspositions[wkc.getxpos() + 2, wkc.getypos() - 1] != 2)
+            if (chesspositions[wkc.getxpos() + 2, wkc.getypos() - 1] < 6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x - 6f, currentpos.y, currentpos.z - 12f), Quaternion.Euler(0f, 0f, 0f));
@@ -1582,7 +1607,7 @@
         }
         try
         {
-            if (chesspositions[wkc.getxpos() + 2, wkc.getypos() + 1] != 2)
+            if (chesspositions[wkc.getxpos() + 2, wkc.getypos() + 1] < 6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x + 6f, currentpos.y, currentpos.z - 12f), Quaternion.Euler(0f, 0f, 0f));
@@ -1596,7 +1621,7 @@
 
         try
         {
-            if (chesspositions[wkc.getxpos() + 1, wkc.getypos() + 2] != 2)
+            if (chesspositions[wkc.getxpos() + 1, wkc.getypos() + 2] < 6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x + 12f, currentpos.y, currentpos.z - 6f), Quaternion.Euler(0f, 0f, 0f));
@@ -1609,7 +1634,7 @@
         }
         try
         {
-            if (chesspositions[wkc.getxpos() + 1, wkc.getypos() - 2] != 2)
+            if (chesspositions[wkc.getxpos() + 1, wkc.getypos() - 2] < 6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x - 12f, currentpos.y, currentpos.z - 6f), Quaternion.Euler(0f, 0f, 0f));
@@ -1622,7 +1647,7 @@
         }
         try
         {
-            if (chesspositions[wkc.getxpos() - 2, wkc.getypos() - 1] != 2)
+            if (chesspositions[wkc.getxpos() - 2, wkc.getypos() - 1] < 6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x - 6f, currentpos.y, currentpos.z + 12f), Quaternion.Euler(0f, 0f, 0f));
@@ -1635,7 +1660,7 @@
         }
         try
         {
-            if (chesspositions[wkc.getxpos() - 2, wkc.getypos() + 1] != 2)
+            if (chesspositions[wkc.getxpos() - 2, wkc.getypos() + 1] <6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x + 6f, currentpos.y, currentpos.z + 12f), Quaternion.Euler(0f, 0f, 0f));
@@ -1648,7 +1673,7 @@
         }
         try
         {
-            if (chesspositions[wkc.getxpos() - 1, wkc.getypos() - 2] != 2)
+            if (chesspositions[wkc.getxpos() - 1, wkc.getypos() - 2] < 6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x - 12f, currentpos.y, currentpos.z + 6f), Quaternion.Euler(0f, 0f, 0f));
@@ -1661,7 +1686,7 @@
         }
         try
         {
-            if (chesspositions[wkc.getxpos() - 1, wkc.getypos() + 2] != 2)
+            if (chesspositions[wkc.getxpos() - 1, wkc.getypos() + 2] < 6)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x + 12f, currentpos.y, currentpos.z + 6f), Quaternion.Euler(0f, 0f, 0f));
