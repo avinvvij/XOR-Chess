@@ -234,6 +234,19 @@ public class whitekingcontroller : MonoBehaviour {
 
         }
 
+        try
+        {
+            if ((chesspositions[x - 2, y - 1] == 10 || chesspositions[x - 2, y + 1] == 10 || chesspositions[x + 2, y + 1] == 10 || chesspositions[x + 2, y - 1] == 10 || chesspositions[x - 1, y + 2] == 10 || chesspositions[x + 1, y + 2] == 10 || chesspositions[x - 1, y - 2]  == 10 || chesspositions[x + 1, y - 2] == 10) && result == false)
+            {
+                print("check");
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+
         return result;
     }
 
