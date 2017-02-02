@@ -57,14 +57,14 @@ public class whitekingcontroller : MonoBehaviour {
 
     public bool checkwhitecheck(int x , int y)
     {
-        this.chesspositions = chesscontroller.GetComponent<chesscontroller>().getchesspositions();
+        this.chesspositions = ( int[,] )chesscontroller.GetComponent<chesscontroller>().getchesspositions().Clone();
         //printchesspositions();
         //print("here");
         bool result = false;
         int count = 1;
         try
         {
-            while ((chesspositions[x - count, y] != 7 && chesspositions[x - count, y] != 8) && result == false)
+            while ((chesspositions[x - count, y] == 0) && result == false)
             {
                 //it's a check to white king
                 //print("Im here: "+ chesspositions[xpos - count, ypos]);
@@ -85,7 +85,7 @@ public class whitekingcontroller : MonoBehaviour {
         try
         {
             count = 1;
-            while ((chesspositions[x + count, y] != 7 && chesspositions[x + count, y] != 8) && result == false)
+            while ((chesspositions[x + count, y] == 0) && result == false)
             {
                 //it's a check to white king
                 //print("Im here: " + chesspositions[xpos - count, ypos]);
@@ -104,7 +104,7 @@ public class whitekingcontroller : MonoBehaviour {
         }
         try {
             count = 1;
-            while ((chesspositions[x, y-count] != 7 && chesspositions[x, y-count] != 8) && result == false)
+            while ((chesspositions[x, y-count]== 0) && result == false)
             {
                 //it's a check to white king
                 //print("Im here: " + chesspositions[xpos - count, ypos]);
@@ -124,7 +124,7 @@ public class whitekingcontroller : MonoBehaviour {
         try
         {
             count = 1;
-            while ((chesspositions[x, y+count] != 7 && chesspositions[x, y+count] != 8) && result == false)
+            while ((chesspositions[x, y+count] == 0) && result == false)
             {
                 //it's a check to white king
                 //print("Im here: " + chesspositions[xpos - count, ypos]);
@@ -144,7 +144,7 @@ public class whitekingcontroller : MonoBehaviour {
         try
         {
             count = 1;
-            while ((chesspositions[x+count, y + count] != 9 && chesspositions[x+count, y + count] != 8) && result == false)
+            while ((chesspositions[x+count, y + count] == 0 )&& result == false)
             {
                 //it's a check to white king
                 //print("Im here: " + chesspositions[xpos - count, ypos]);
@@ -165,7 +165,7 @@ public class whitekingcontroller : MonoBehaviour {
         try
         {
             count = 1;
-            while ((chesspositions[x - count, y + count] != 9 && chesspositions[x - count, y + count] != 8) && result == false)
+            while ((chesspositions[x - count, y + count] == 0) && result == false)
             {
                 //it's a check to white king
                 //print("Im here: " + chesspositions[xpos - count, ypos]);
@@ -185,7 +185,7 @@ public class whitekingcontroller : MonoBehaviour {
         try
         {
             count = 1;
-            while ((chesspositions[x + count, y - count] != 9 && chesspositions[x + count, y - count] != 8) && result == false)
+            while ((chesspositions[x + count, y - count] == 0) && result == false)
             {
                 //it's a check to white king
                 //print("Im here: " + chesspositions[xpos - count, ypos]);
@@ -206,7 +206,7 @@ public class whitekingcontroller : MonoBehaviour {
         try
         {
             count = 1;
-            while ((chesspositions[x - count, y - count] != 9 && chesspositions[x - count, y - count] != 8) && result == false)
+            while ((chesspositions[x - count, y - count] == 0) && result == false)
             {
                 //it's a check to white king
                 //print("Im here: " + chesspositions[xpos - count, ypos]);
@@ -255,23 +255,24 @@ public class whitekingcontroller : MonoBehaviour {
 
     public bool predictwhitecheck(int x, int y ,int prevx , int prevy , int status)
     {
-        this.chesspositions = (int[,]) chesscontroller.GetComponent<chesscontroller>().getchesspositions().Clone();
-        this.chesspositions[x, y] = status;
-        this.chesspositions[prevx, prevy] = 0;
+
+        int[,] cp = (int[,]) chesscontroller.GetComponent<chesscontroller>().getchesspositions().Clone();
+        cp[x, y] = status;
+        cp[prevx, prevy] = 0;
         //printchesspositions();
         //print("here");
         bool result = false;
         int count = 1;
         try
         {
-            while ((chesspositions[x - count, y] == 0))
+            while ((cp[x - count, y] == 0))
             {
                 //it's a check to white king
                 //print("Im here: "+ chesspositions[xpos - count, ypos]);
                 count++;
             }
 
-            if (chesspositions[x - count, y] == 7 || chesspositions[x - count, y] == 8)
+            if (cp[x - count, y] == 7 || cp[x - count, y] == 8)
             {
                 notifications.text = "Check predicted";
                 result = true;
@@ -285,14 +286,14 @@ public class whitekingcontroller : MonoBehaviour {
         try
         {
             count = 1;
-            while ((chesspositions[x + count, y] == 0))
+            while ((cp[x + count, y] == 0))
             {
                 //it's a check to white king
                 //print("Im here: " + chesspositions[xpos - count, ypos]);
                 count++;
             }
 
-            if (chesspositions[x + count, y] == 7 || chesspositions[x + count, y] == 8)
+            if (cp[x + count, y] == 7 || cp[x + count, y] == 8)
             {
                 notifications.text = "Check predicted";
                 result = true;
@@ -305,14 +306,14 @@ public class whitekingcontroller : MonoBehaviour {
         try
         {
             count = 1;
-            while ((chesspositions[x, y - count] == 0))
+            while ((cp[x, y - count] == 0))
             {
                 //it's a check to white king
                 //print("Im here: " + chesspositions[xpos - count, ypos]);
                 count++;
             }
 
-            if (chesspositions[x, y - count] == 7 || chesspositions[x, y - count] == 8)
+            if (cp[x, y - count] == 7 || cp[x, y - count] == 8)
             {
                 notifications.text = "Check Predicted";
                 result = true;
@@ -325,14 +326,14 @@ public class whitekingcontroller : MonoBehaviour {
         try
         {
             count = 1;
-            while ((chesspositions[x, y + count] == 0))
+            while ((cp[x, y + count] == 0))
             {
                 //it's a check to white king
                 //print("Im here: " + chesspositions[xpos - count, ypos]);
                 count++;
             }
 
-            if (chesspositions[x, y + count] == 7 || chesspositions[x, y + count] == 8)
+            if (cp[x, y + count] == 7 || cp[x, y + count] == 8)
             {
                 notifications.text = "Check Predicted";
                 result = true;
@@ -345,55 +346,14 @@ public class whitekingcontroller : MonoBehaviour {
         try
         {
             count = 1;
-            while ((chesspositions[x + count, y + count]==0))
+            while ((cp[x + count, y + count]==0))
             {
                 //it's a check to white king
                 //print("Im here: " + chesspositions[xpos - count, ypos]);
                 count++;
             }
 
-            if (chesspositions[x + count, y + count] == 9 || chesspositions[x + count, y + count] == 8)
-            {
-                notifications.text = "Check Predicted";
-                result = true;
-            }
-        }
-        catch (Exception e)
-        {
-
-        }
-
-        try
-        {
-            count = 1;
-            while ((chesspositions[x - count, y + count]==0))
-            {
-                //it's a check to white king
-                //print("Im here: " + chesspositions[xpos - count, ypos]);
-                count++;
-            }
-
-            if (chesspositions[x - count, y + count] == 9 || chesspositions[x - count, y + count] == 8)
-            {
-                notifications.text = "Check Predicted";
-                result = true;
-            }
-        }
-        catch (Exception e)
-        {
-
-        }
-        try
-        {
-            count = 1;
-            while ((chesspositions[x + count, y - count]==0))
-            {
-                //it's a check to white king
-                //print("Im here: " + chesspositions[xpos - count, ypos]);
-                count++;
-            }
-
-            if (chesspositions[x + count, y - count] == 9 || chesspositions[x + count, y - count] == 8)
+            if (cp[x + count, y + count] == 9 || cp[x + count, y + count] == 8)
             {
                 notifications.text = "Check Predicted";
                 result = true;
@@ -407,14 +367,34 @@ public class whitekingcontroller : MonoBehaviour {
         try
         {
             count = 1;
-            while ((chesspositions[x - count, y - count] == 0))
+            while ((cp[x - count, y + count]==0))
             {
                 //it's a check to white king
                 //print("Im here: " + chesspositions[xpos - count, ypos]);
                 count++;
             }
 
-            if (chesspositions[x - count, y - count] == 9 || chesspositions[x - count, y - count] == 8)
+            if (cp[x - count, y + count] == 9 || cp[x - count, y + count] == 8)
+            {
+                notifications.text = "Check Predicted";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            count = 1;
+            while ((cp[x + count, y - count]==0))
+            {
+                //it's a check to white king
+                //print("Im here: " + chesspositions[xpos - count, ypos]);
+                count++;
+            }
+
+            if (cp[x + count, y - count] == 9 || cp[x + count, y - count] == 8)
             {
                 notifications.text = "Check Predicted";
                 result = true;
@@ -427,7 +407,15 @@ public class whitekingcontroller : MonoBehaviour {
 
         try
         {
-            if ((chesspositions[x - 1, y - 1] == 6 || chesspositions[x - 1, y + 1] == 6))
+            count = 1;
+            while ((cp[x - count, y - count] == 0))
+            {
+                //it's a check to white king
+                //print("Im here: " + chesspositions[xpos - count, ypos]);
+                count++;
+            }
+
+            if (cp[x - count, y - count] == 9 || cp[x - count, y - count] == 8)
             {
                 notifications.text = "Check Predicted";
                 result = true;
@@ -440,7 +428,7 @@ public class whitekingcontroller : MonoBehaviour {
 
         try
         {
-            if ((chesspositions[x - 2, y - 1] == 10 || chesspositions[x - 2, y + 1] == 10 || chesspositions[x + 2, y + 1] == 10 || chesspositions[x + 2, y - 1] == 10 || chesspositions[x - 1, y + 2] == 10 || chesspositions[x + 1, y + 2] == 10 || chesspositions[x - 1, y - 2] == 10 || chesspositions[x + 1, y - 2] == 10))
+            if ((cp[x - 1, y - 1] == 6 || cp[x - 1, y + 1] == 6))
             {
                 notifications.text = "Check Predicted";
                 result = true;
@@ -451,6 +439,29 @@ public class whitekingcontroller : MonoBehaviour {
 
         }
 
+        try
+        {
+            if ((cp[x - 2, y - 1] == 10 || cp[x - 2, y + 1] == 10 || cp[x + 2, y + 1] == 10 || cp[x + 2, y - 1] == 10 || cp[x - 1, y + 2] == 10 || cp[x + 1, y + 2] == 10 || cp[x - 1, y - 2] == 10 || cp[x + 1, y - 2] == 10))
+            {
+                notifications.text = "Check Predicted";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        return result;
+    }
+
+    public bool predictwhitediffcheck(int x , int y , int prevx , int prevy , int status)
+    {
+        bool result = false;
+        int[,] cp = (int[,])chesscontroller.GetComponent<chesscontroller>().getchesspositions();
+        cp[x, y] = status;
+        cp[prevx, prevy] = 0;
+        result = checkwhitecheck(xpos, ypos);
         return result;
     }
 

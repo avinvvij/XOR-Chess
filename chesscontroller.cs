@@ -843,7 +843,7 @@
 			int count = 1;
 			//top possiblepositions
 			try{
-				while((chesspositions[wrc.getxpos()-count , wrc.getypos()]<1 || chesspositions[wrc.getxpos() - count, wrc.getypos()] > 5) && whiteking.GetComponent<whitekingcontroller>().predictwhitecheck(wrc.getxpos() - count, wrc.getypos() , wrc.getxpos() , wrc.getypos() , wrc.getstatus()) == false)
+				while((chesspositions[wrc.getxpos()-count , wrc.getypos()]<1 || chesspositions[wrc.getxpos() - count, wrc.getypos()] > 5) && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wrc.getxpos() - count, wrc.getypos() , wrc.getxpos() , wrc.getypos() , wrc.getstatus()) == false)
             {
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x , currentpos.y , currentpos.z + (6*count)), Quaternion.Euler (0f, 0f, 0f));
@@ -861,7 +861,7 @@
 			}
 			try{
 				count = 1;
-				while((chesspositions[wrc.getxpos()+count , wrc.getypos()] < 1 || chesspositions[wrc.getxpos() + count, wrc.getypos()] > 5) && whiteking.GetComponent<whitekingcontroller>().predictwhitecheck(wrc.getxpos() + count, wrc.getypos(), wrc.getxpos(), wrc.getypos(), wrc.getstatus()) == false)
+				while((chesspositions[wrc.getxpos()+count , wrc.getypos()] < 1 || chesspositions[wrc.getxpos() + count, wrc.getypos()] > 5) && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wrc.getxpos() + count, wrc.getypos(), wrc.getxpos(), wrc.getypos(), wrc.getstatus()) == false)
             {
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x , currentpos.y , currentpos.z - (6*count)), Quaternion.Euler (0f, 0f, 0f));
@@ -880,7 +880,7 @@
 			}
 			try{
 				count = 1;
-				while(chesspositions[wrc.getxpos() , wrc.getypos()-count]<1 || chesspositions[wrc.getxpos(), wrc.getypos() - count] > 5)
+				while((chesspositions[wrc.getxpos() , wrc.getypos()-count]<1 || chesspositions[wrc.getxpos(), wrc.getypos() - count] > 5)  && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wrc.getxpos(), wrc.getypos() - count, wrc.getxpos(), wrc.getypos(), wrc.getstatus()) == false)
             {
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x - (6*count), currentpos.y , currentpos.z ), Quaternion.Euler (0f, 0f, 0f));
@@ -899,7 +899,7 @@
 			}
 			try{
 				count = 1;
-				while(chesspositions[wrc.getxpos() , wrc.getypos()+count]<1 || chesspositions[wrc.getxpos(), wrc.getypos() + count] > 5)
+				while((chesspositions[wrc.getxpos() , wrc.getypos()+count]<1 || chesspositions[wrc.getxpos(), wrc.getypos() + count] > 5) && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wrc.getxpos(), wrc.getypos() + count, wrc.getxpos(), wrc.getypos(), wrc.getstatus()) == false)
             {
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x + (6*count), currentpos.y , currentpos.z ), Quaternion.Euler (0f, 0f, 0f));
