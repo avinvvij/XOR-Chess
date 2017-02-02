@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class whiteknightcontroller : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class whiteknightcontroller : MonoBehaviour {
 	public int xpos;
 	public int ypos;
     public int status;
+    
 
     // Use this for initialization
     void Start () {

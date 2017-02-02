@@ -525,10 +525,53 @@
                             whiteplay = true;
                         whiteking.GetComponent<whitekingcontroller>().checkwhitecheck(whiteking.GetComponent<whitekingcontroller>().getxpos(), whiteking.GetComponent<whitekingcontroller>().getypos());
                     }
+                    else if (selectedobject.tag == "whiteking")
+                    {
+                        for (int i = 0; i < 8; i++)
+                        {
+                            for (int j = 0; j < 8; j++)
+                            {
+                                //print (boardvectors [i, j] + " " + hit.collider.gameObject.transform.position);
+                                //print(selectedobject.transform.position);
+                                if (selectedobject.transform.position.x >= upperranges[i, j].x && selectedobject.transform.position.x <= lowerranges[i, j].x && selectedobject.transform.position.z >= upperranges[i, j].z && selectedobject.transform.position.z <= lowerranges[i, j].z)
+                                {
+                                    //print ("here");
+                                    chesspositions[i, j] = 0;
+                                    // printchesspositions ();
+                                    break;
+                                }
+                            }
+                        }
+
+                        //iTween.MoveTo(selectedobject, hit.collider.gameObject.transform.position, 2.0f);
+                        iTween.MoveTo(selectedobject, iTween.Hash("x", hit.collider.gameObject.transform.position.x, "y", hit.collider.gameObject.transform.position.y, "z", hit.collider.gameObject.transform.position.z, "trnsition", "linear", "time", timeoftransition, "oncomplete", "movecam", "oncompletetarget", gameObject));
+                        selectedobject.GetComponent<whitekingcontroller>().setcurrentposition(hit.collider.gameObject.transform.position);
+                        
+                        GameObject[] temps = GameObject.FindGameObjectsWithTag("possibleposition");
+                        for (int i = 0; i < 8; i++)
+                        {
+                            for (int j = 0; j < 8; j++)
+                            {
+                                //print (boardvectors [i, j] + " " + hit.collider.gameObject.transform.position);
+                                if (hit.collider.gameObject.transform.position.x >= upperranges[i, j].x && hit.collider.gameObject.transform.position.x <= lowerranges[i, j].x && hit.collider.gameObject.transform.position.z >= upperranges[i, j].z && hit.collider.gameObject.transform.position.z <= lowerranges[i, j].z)
+                                {
+                                    //print ("here");
+                                    chesspositions[i, j] = selectedobject.GetComponent<whitekingcontroller>().getstatus();
+                                    selectedobject.GetComponent<whitekingcontroller>().setxpos(i);
+                                    selectedobject.GetComponent<whitekingcontroller>().setypos(j);
+                                    //printchesspositions ();
+                                    break;
+                                }
+                            }
+                        }
+                        for (int i = 0; i < temps.Length; i++)
+                            Destroy(temps[i]);
+                        whiteplay = false;
+                    }
 
                     //printchesspositions();
 
-                    }
+                }
 					if (hit.collider.tag == "whitepawn" && whiteplay == true) {
 						//display prefab of cube on possible locations
 						//Debug.Log("here");
@@ -570,6 +613,10 @@
                     {
                         onblackknightclicked(hit);
                     }
+                    if (hit.collider.tag == "whiteking" && whiteplay == true)
+                    {
+                        onwhitekingclicked(hit);
+                    }
                     GameObject selected;
                     selected = (GameObject)Instantiate(selectedsurround, hit.collider.gameObject.transform.position, Quaternion.Euler(0f, 0f, 0f));
                 selected.tag = "surroundbox";
@@ -581,7 +628,7 @@
 		public void printchesspositions(){
 			for (int i = 0; i < 8; i++) {
 				for (int j = 0; j < 8; j++) {
-					Debug.Log (i+" "+j+" "+chesspositions [i, j]);
+					Debug.Log ("cc: "+i+" "+j+" "+chesspositions [i, j]);
 				}
 			}
 		}
@@ -796,7 +843,7 @@
 			int count = 1;
 			//top possiblepositions
 			try{
-				while(chesspositions[wrc.getxpos()-count , wrc.getypos()]<1 || chesspositions[wrc.getxpos() - count, wrc.getypos()] > 5)
+				while((chesspositions[wrc.getxpos()-count , wrc.getypos()]<1 || chesspositions[wrc.getxpos() - count, wrc.getypos()] > 5) && whiteking.GetComponent<whitekingcontroller>().predictwhitecheck(wrc.getxpos() - count, wrc.getypos() , wrc.getxpos() , wrc.getypos() , wrc.getstatus()) == false)
             {
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x , currentpos.y , currentpos.z + (6*count)), Quaternion.Euler (0f, 0f, 0f));
@@ -814,7 +861,7 @@
 			}
 			try{
 				count = 1;
-				while(chesspositions[wrc.getxpos()+count , wrc.getypos()] < 1 || chesspositions[wrc.getxpos() + count, wrc.getypos()] > 5)
+				while((chesspositions[wrc.getxpos()+count , wrc.getypos()] < 1 || chesspositions[wrc.getxpos() + count, wrc.getypos()] > 5) && whiteking.GetComponent<whitekingcontroller>().predictwhitecheck(wrc.getxpos() + count, wrc.getypos(), wrc.getxpos(), wrc.getypos(), wrc.getstatus()) == false)
             {
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x , currentpos.y , currentpos.z - (6*count)), Quaternion.Euler (0f, 0f, 0f));
@@ -1699,12 +1746,131 @@
         }
     }
 
+    public void onwhitekingclicked(RaycastHit hit)
+    {
+        selectedobject = hit.collider.gameObject;
+        GameObject[] temps = GameObject.FindGameObjectsWithTag("possibleposition");
+        for (int i = 0; i < temps.Length; i++)
+            Destroy(temps[i]);
+        whitekingcontroller wkic = hit.collider.gameObject.GetComponent<whitekingcontroller>();
+        Vector3 currentpos = wkic.getcurrentposition();
+        try
+        {
+            if ((chesspositions[wkic.getxpos() - 1, wkic.getypos() - 1] < 1 || chesspositions[wkic.getxpos() - 1, wkic.getypos() - 1] > 5) && wkic.predictwhitecheck(wkic.getxpos()-1 , wkic.getypos()-1,wkic.getxpos() , wkic.getypos() , wkic.getstatus())==false)
+            {
+                GameObject temp;
+                temp = Instantiate(possibleposition, new Vector3(currentpos.x - 6f, currentpos.y, currentpos.z + 6f), Quaternion.Euler(0f, 0f, 0f));
+                temp.tag = "possibleposition";
+            }
+        }catch(Exception e)
+        {
+
+        }
+
+        try
+        {
+            if ((chesspositions[wkic.getxpos() - 1, wkic.getypos()] < 1 || chesspositions[wkic.getxpos() - 1, wkic.getypos()] > 5) && wkic.predictwhitecheck(wkic.getxpos()-1 , wkic.getypos(),wkic.getxpos(),wkic.getypos() , wkic.getstatus()) == false)
+            {
+                GameObject temp;
+                temp = Instantiate(possibleposition, new Vector3(currentpos.x, currentpos.y, currentpos.z+6f), Quaternion.Euler(0f, 0f, 0f));
+                temp.tag = "possibleposition";
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        try
+        {
+            if ((chesspositions[wkic.getxpos() - 1, wkic.getypos() + 1] < 1 || chesspositions[wkic.getxpos() - 1, wkic.getypos() - 1] > 5) && wkic.predictwhitecheck(wkic.getxpos() - 1, wkic.getypos() + 1, wkic.getxpos(), wkic.getypos(), wkic.getstatus()) == false)
+            {
+                GameObject temp;
+                temp = Instantiate(possibleposition, new Vector3(currentpos.x + 6f, currentpos.y, currentpos.z + 6f), Quaternion.Euler(0f, 0f, 0f));
+                temp.tag = "possibleposition";
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        try
+        {
+            if ((chesspositions[wkic.getxpos(), wkic.getypos() - 1] < 1 || chesspositions[wkic.getxpos(), wkic.getypos() - 1] > 5) && wkic.predictwhitecheck(wkic.getxpos(), wkic.getypos() - 1, wkic.getxpos(), wkic.getypos(), wkic.getstatus()) == false)
+            {
+                GameObject temp;
+                temp = Instantiate(possibleposition, new Vector3(currentpos.x - 6f, currentpos.y, currentpos.z), Quaternion.Euler(0f, 0f, 0f));
+                temp.tag = "possibleposition";
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        try
+        {
+            if ((chesspositions[wkic.getxpos(), wkic.getypos() + 1] < 1 || chesspositions[wkic.getxpos(), wkic.getypos() + 1] > 5) && wkic.predictwhitecheck(wkic.getxpos(), wkic.getypos() + 1, wkic.getxpos(), wkic.getypos(), wkic.getstatus()) == false)
+            {
+                GameObject temp;
+                temp = Instantiate(possibleposition, new Vector3(currentpos.x + 6f, currentpos.y, currentpos.z), Quaternion.Euler(0f, 0f, 0f));
+                temp.tag = "possibleposition";
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[wkic.getxpos() + 1, wkic.getypos() - 1] < 1 || chesspositions[wkic.getxpos() + 1, wkic.getypos() - 1] > 5) && wkic.predictwhitecheck(wkic.getxpos() + 1, wkic.getypos() - 1, wkic.getxpos(), wkic.getypos(), wkic.getstatus()) == false)
+            {
+                GameObject temp;
+                temp = Instantiate(possibleposition, new Vector3(currentpos.x - 6f, currentpos.y, currentpos.z - 6f), Quaternion.Euler(0f, 0f, 0f));
+                temp.tag = "possibleposition";
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+
+
+        try
+        {
+            if ((chesspositions[wkic.getxpos() + 1, wkic.getypos()] < 1 || chesspositions[wkic.getxpos() + 1, wkic.getypos()] > 5) && wkic.predictwhitecheck(wkic.getxpos()+1, wkic.getypos(), wkic.getxpos(), wkic.getypos(), wkic.getstatus()) == false)
+            {
+                GameObject temp;
+                temp = Instantiate(possibleposition, new Vector3(currentpos.x, currentpos.y, currentpos.z - 6f), Quaternion.Euler(0f, 0f, 0f));
+                temp.tag = "possibleposition";
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        try
+        {
+            if ((chesspositions[wkic.getxpos() +1 , wkic.getypos() + 1] < 1 || chesspositions[wkic.getxpos() + 1, wkic.getypos() - 1] > 5) && wkic.predictwhitecheck(wkic.getxpos() + 1, wkic.getypos() + 1, wkic.getxpos(), wkic.getypos(), wkic.getstatus()) == false)
+            {
+                GameObject temp;
+                temp = Instantiate(possibleposition, new Vector3(currentpos.x + 6f, currentpos.y, currentpos.z - 6f), Quaternion.Euler(0f, 0f, 0f));
+                temp.tag = "possibleposition";
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+
+    }
 
     public void movecam(){
         //print(selectedobject.name);
         selectedobject.GetComponent<collisionscript>().setcheckcollision(true);
         cameraholder.GetComponent<cameracontroller> ().movecamera ();
-            
 		}
         
        public void movecam2()
