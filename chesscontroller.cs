@@ -200,7 +200,7 @@
                                 for (int i = 0; i < temps.Length; i++)
                                     Destroy(temps[i]);
                                 whiteplay = true;
-                                whiteking.GetComponent<whitekingcontroller>().checkwhitecheck(whiteking.GetComponent<whitekingcontroller>().getxpos() , whiteking.GetComponent<whitekingcontroller>().getypos());
+                                whiteking.GetComponent<whitekingcontroller>().checkwhitecheck(whiteking.GetComponent<whitekingcontroller>().getxpos() , whiteking.GetComponent<whitekingcontroller>().getypos() , null);
                         }
 
                             else if (selectedobject.tag == "whiterook") {
@@ -281,7 +281,7 @@
                             for (int i = 0; i < temps.Length; i++)
                                 Destroy(temps[i]);
                             whiteplay = true;
-                        whiteking.GetComponent<whitekingcontroller>().checkwhitecheck(whiteking.GetComponent<whitekingcontroller>().getxpos(), whiteking.GetComponent<whitekingcontroller>().getypos());
+                        whiteking.GetComponent<whitekingcontroller>().checkwhitecheck(whiteking.GetComponent<whitekingcontroller>().getxpos(), whiteking.GetComponent<whitekingcontroller>().getypos() , null);
                     }
 
                         else if (selectedobject.tag == "whitebishop") {
@@ -364,7 +364,7 @@
                             for (int i = 0; i < temps.Length; i++)
                                 Destroy(temps[i]);
                             whiteplay = true;
-                        whiteking.GetComponent<whitekingcontroller>().checkwhitecheck(whiteking.GetComponent<whitekingcontroller>().getxpos(), whiteking.GetComponent<whitekingcontroller>().getypos());
+                        whiteking.GetComponent<whitekingcontroller>().checkwhitecheck(whiteking.GetComponent<whitekingcontroller>().getxpos(), whiteking.GetComponent<whitekingcontroller>().getypos() , null);
                     }
 
                         else if (selectedobject.tag == "whitequeen") {
@@ -445,7 +445,7 @@
                             for (int i = 0; i < temps.Length; i++)
                                 Destroy(temps[i]);
                             whiteplay = true;
-                        whiteking.GetComponent<whitekingcontroller>().checkwhitecheck(whiteking.GetComponent<whitekingcontroller>().getxpos(), whiteking.GetComponent<whitekingcontroller>().getypos());
+                        whiteking.GetComponent<whitekingcontroller>().checkwhitecheck(whiteking.GetComponent<whitekingcontroller>().getxpos(), whiteking.GetComponent<whitekingcontroller>().getypos() , null);
                     }
                         else if (selectedobject.tag == "whiteknight") {
                             for (int i = 0; i < 8; i++) {
@@ -523,7 +523,7 @@
                             for (int i = 0; i < temps.Length; i++)
                                 Destroy(temps[i]);
                             whiteplay = true;
-                        whiteking.GetComponent<whitekingcontroller>().checkwhitecheck(whiteking.GetComponent<whitekingcontroller>().getxpos(), whiteking.GetComponent<whitekingcontroller>().getypos());
+                        whiteking.GetComponent<whitekingcontroller>().checkwhitecheck(whiteking.GetComponent<whitekingcontroller>().getxpos(), whiteking.GetComponent<whitekingcontroller>().getypos() , null);
                     }
                     else if (selectedobject.tag == "whiteking")
                     {
@@ -643,23 +643,23 @@
 				for (int i = 0; i < temps.Length; i++)
 					Destroy (temps [i]);
             if (chesspositions[pc.getxpos() - 1, pc.getypos()] >= 1 && chesspositions[pc.getxpos() - 1, pc.getypos()] <= 10) {
-            } else if (chesspositions[pc.getxpos() - 2, pc.getypos()] >= 1 && chesspositions[pc.getxpos() - 2, pc.getypos()] <= 10 ) {
+            } if (chesspositions[pc.getxpos() - 1, pc.getypos()] == 0 && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(pc.getxpos() - 1, pc.getypos() , pc.getxpos() , pc.getypos() , pc.getstatus()) == false)
+            {
                 GameObject temp;
                 Vector3 currentposition = pc.getcurrentposition();
                 temp = (GameObject)Instantiate(possibleposition, new Vector3(currentposition.x, currentposition.y, currentposition.z + 6f), Quaternion.Euler(0f, 0f, 0f));
                 temp.tag = "possibleposition";
             }
-            else {
+            if (chesspositions[pc.getxpos() - 2, pc.getypos()] == 0 && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(pc.getxpos() - 2, pc.getypos(), pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
+            { 
                 GameObject temp;
                 Vector3 currentposition = pc.getcurrentposition();
-                temp = (GameObject)Instantiate(possibleposition, new Vector3(currentposition.x, currentposition.y, currentposition.z + 6f), Quaternion.Euler(0f, 0f, 0f));
-                temp.tag = "possibleposition";
                 temp = (GameObject)Instantiate(possibleposition, new Vector3(currentposition.x, currentposition.y, currentposition.z + 12f), Quaternion.Euler(0f, 0f, 0f));
                 temp.tag = "possibleposition";
             }
             try
             {
-                if (chesspositions[pc.getxpos() - 1, pc.getypos() - 1] == 6 || chesspositions[pc.getxpos() - 1, pc.getypos() - 1] == 7 || chesspositions[pc.getxpos() - 1, pc.getypos() - 1] == 8 || chesspositions[pc.getxpos() - 1, pc.getypos() - 1] == 9 || chesspositions[pc.getxpos() - 1, pc.getypos() - 1] == 10)
+                if (chesspositions[pc.getxpos() - 1, pc.getypos() - 1] >= 6 && chesspositions[pc.getxpos() - 1, pc.getypos() - 1] <= 10 && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(pc.getxpos() - 1, pc.getypos()-1, pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
                 {
                     GameObject temp;
                     Vector3 currentposition = pc.getcurrentposition();
@@ -672,7 +672,7 @@
             }
             try
             {
-                if (chesspositions[pc.getxpos() +1 , pc.getypos() - 1] == 6 || chesspositions[pc.getxpos() + 1, pc.getypos() - 1] == 7 || chesspositions[pc.getxpos() + 1, pc.getypos() - 1] == 8 || chesspositions[pc.getxpos() + 1, pc.getypos() - 1] == 9 || chesspositions[pc.getxpos() + 1, pc.getypos() - 1] == 10)
+                if (chesspositions[pc.getxpos() - 1, pc.getypos() + 1] >= 6 && chesspositions[pc.getxpos() + 1, pc.getypos() - 1] <= 10 && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(pc.getxpos() - 1, pc.getypos() + 1 , pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
                 {
                     GameObject temp;
                     Vector3 currentposition = pc.getcurrentposition();
@@ -685,22 +685,21 @@
             }
 
         } else if (pc.getfirstplay () == false) {
-				if ((pc.getcurrentposition ().z <= 23.02 && pc.getcurrentposition ().z >= 19.02) || chesspositions[pc.getxpos()-1 , pc.getypos()]==1 || chesspositions[pc.getxpos()-1,pc.getypos()]==2) {
-				}else{
+				
 					GameObject[] temps = GameObject.FindGameObjectsWithTag ("possibleposition");
 					for (int i = 0; i < temps.Length; i++)
 						Destroy (temps [i]);
-                if (chesspositions[pc.getxpos() - 2, pc.getypos()] >= 1 && chesspositions[pc.getxpos() - 2, pc.getypos()] <= 10)
+                    if (chesspositions[pc.getxpos() - 1, pc.getypos()] == 0 && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(pc.getxpos() - 1, pc.getypos(), pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
                 {
                     GameObject temp;
                     Vector3 currentposition = pc.getcurrentposition();
                     temp = (GameObject)Instantiate(possibleposition, new Vector3(currentposition.x, currentposition.y, currentposition.z + 6f), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
                 }
-            }
+            
             try
             {
-                if (chesspositions[pc.getxpos() - 1, pc.getypos() - 1] == 6 || chesspositions[pc.getxpos() - 1, pc.getypos() - 1] == 7 || chesspositions[pc.getxpos() - 1, pc.getypos() - 1] == 8 || chesspositions[pc.getxpos() - 1, pc.getypos() - 1] == 9 || chesspositions[pc.getxpos() - 1, pc.getypos() - 1] == 10)
+                if (chesspositions[pc.getxpos() - 1, pc.getypos() - 1] >= 6 && chesspositions[pc.getxpos() - 1, pc.getypos() - 1] <= 10 && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(pc.getxpos() - 1, pc.getypos() - 1, pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
                 {
                     GameObject temp;
                     Vector3 currentposition = pc.getcurrentposition();
@@ -714,7 +713,7 @@
             }
             try
             {
-                if (chesspositions[pc.getxpos() + 1, pc.getypos() - 1] == 6 || chesspositions[pc.getxpos() + 1, pc.getypos() - 1] == 7 || chesspositions[pc.getxpos() + 1, pc.getypos() - 1] == 8 || chesspositions[pc.getxpos() + 1, pc.getypos() - 1] == 9 || chesspositions[pc.getxpos() + 1, pc.getypos() - 1] == 10)
+                if (chesspositions[pc.getxpos() - 1, pc.getypos() + 1] >= 6 && chesspositions[pc.getxpos() + 1, pc.getypos() - 1] <= 10 && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(pc.getxpos() - 1, pc.getypos() + 1, pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
                 {
                     GameObject temp;
                     Vector3 currentposition = pc.getcurrentposition();
@@ -843,17 +842,19 @@
 			int count = 1;
 			//top possiblepositions
 			try{
-				while((chesspositions[wrc.getxpos()-count , wrc.getypos()]<1 || chesspositions[wrc.getxpos() - count, wrc.getypos()] > 5) && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wrc.getxpos() - count, wrc.getypos() , wrc.getxpos() , wrc.getypos() , wrc.getstatus()) == false)
+				while((chesspositions[wrc.getxpos()-count , wrc.getypos()]<1 || chesspositions[wrc.getxpos() - count, wrc.getypos()] > 5))
             {
+                   if(whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wrc.getxpos() - count, wrc.getypos() , wrc.getxpos() , wrc.getypos() , wrc.getstatus()) == false){
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x , currentpos.y , currentpos.z + (6*count)), Quaternion.Euler (0f, 0f, 0f));
 					temp.tag = "possibleposition";
-                if (chesspositions[wrc.getxpos() - count, wrc.getypos()] == 6 || chesspositions[wrc.getxpos() - count, wrc.getypos()] == 7 || chesspositions[wrc.getxpos() - count, wrc.getypos()] == 8 || chesspositions[wrc.getxpos() - count, wrc.getypos()] == 9 || chesspositions[wrc.getxpos() - count, wrc.getypos()] == 10)
-                {
-                    temp = Instantiate(possibleposition, new Vector3(currentpos.x, currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
-                    temp.tag = "possibleposition";
-                    break;
-                }
+                    if (chesspositions[wrc.getxpos() - count, wrc.getypos()] == 6 || chesspositions[wrc.getxpos() - count, wrc.getypos()] == 7 || chesspositions[wrc.getxpos() - count, wrc.getypos()] == 8 || chesspositions[wrc.getxpos() - count, wrc.getypos()] == 9 || chesspositions[wrc.getxpos() - count, wrc.getypos()] == 10)
+                    {
+                        temp = Instantiate(possibleposition, new Vector3(currentpos.x, currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
+                        temp.tag = "possibleposition";
+                        break;
+                    }
+               }
                 count++;
 				}
 			}catch(Exception e){
@@ -861,8 +862,9 @@
 			}
 			try{
 				count = 1;
-				while((chesspositions[wrc.getxpos()+count , wrc.getypos()] < 1 || chesspositions[wrc.getxpos() + count, wrc.getypos()] > 5) && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wrc.getxpos() + count, wrc.getypos(), wrc.getxpos(), wrc.getypos(), wrc.getstatus()) == false)
+				while((chesspositions[wrc.getxpos()+count , wrc.getypos()] < 1 || chesspositions[wrc.getxpos() + count, wrc.getypos()] > 5))
             {
+                    if(whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wrc.getxpos() + count, wrc.getypos(), wrc.getxpos(), wrc.getypos(), wrc.getstatus()) == false){
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x , currentpos.y , currentpos.z - (6*count)), Quaternion.Euler (0f, 0f, 0f));
 					temp.tag = "possibleposition";
@@ -872,6 +874,7 @@
                     temp.tag = "possibleposition";
                     break;
                 }
+                    }
                 count++;
                 
 				}
@@ -880,8 +883,9 @@
 			}
 			try{
 				count = 1;
-				while((chesspositions[wrc.getxpos() , wrc.getypos()-count]<1 || chesspositions[wrc.getxpos(), wrc.getypos() - count] > 5)  && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wrc.getxpos(), wrc.getypos() - count, wrc.getxpos(), wrc.getypos(), wrc.getstatus()) == false)
+				while((chesspositions[wrc.getxpos() , wrc.getypos()-count]<1 || chesspositions[wrc.getxpos(), wrc.getypos() - count] > 5)  )
             {
+                    if(whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wrc.getxpos(), wrc.getypos() - count, wrc.getxpos(), wrc.getypos(), wrc.getstatus()) == false){
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x - (6*count), currentpos.y , currentpos.z ), Quaternion.Euler (0f, 0f, 0f));
 					temp.tag = "possibleposition";
@@ -891,6 +895,7 @@
                     temp.tag = "possibleposition";
                     break;
                 }
+                    }
                 count++;
                     
 				}
@@ -899,8 +904,9 @@
 			}
 			try{
 				count = 1;
-				while((chesspositions[wrc.getxpos() , wrc.getypos()+count]<1 || chesspositions[wrc.getxpos(), wrc.getypos() + count] > 5) && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wrc.getxpos(), wrc.getypos() + count, wrc.getxpos(), wrc.getypos(), wrc.getstatus()) == false)
+				while((chesspositions[wrc.getxpos() , wrc.getypos()+count]<1 || chesspositions[wrc.getxpos(), wrc.getypos() + count] > 5) )
             {
+                    if(whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wrc.getxpos(), wrc.getypos() + count, wrc.getxpos(), wrc.getypos(), wrc.getstatus()) == false){
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x + (6*count), currentpos.y , currentpos.z ), Quaternion.Euler (0f, 0f, 0f));
 					temp.tag = "possibleposition";
@@ -910,6 +916,7 @@
                     temp.tag = "possibleposition";
                     break;
                 }
+                    }
                 count++;
                 
 				}
@@ -1032,6 +1039,7 @@
 			try{
 				while(chesspositions[wbc.getxpos()-count , wbc.getypos()+count]< 1|| chesspositions[wbc.getxpos() - count, wbc.getypos() + count] > 5)
             {
+                    if(whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wbc.getxpos()-count , wbc.getypos()+count , wbc.getxpos() , wbc.getypos() , wbc.getstatus()) == false){
 					GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x+(6*count) , currentpos.y , currentpos.z + (6*count)), Quaternion.Euler (0f, 0f, 0f));
 					temp.tag = "possibleposition";
@@ -1041,6 +1049,7 @@
                     temp.tag = "possibleposition";
                     break;
                 }
+                    }
 					count++;
 				}
 			}catch(Exception e){
@@ -1050,14 +1059,17 @@
 				count = 1;
 				while(chesspositions[wbc.getxpos()-count , wbc.getypos()-count] < 1 || chesspositions[wbc.getxpos() - count, wbc.getypos() - count]>5)
             {
-					GameObject temp;
-					temp = Instantiate (possibleposition, new Vector3 (currentpos.x-(6*count) , currentpos.y , currentpos.z + (6*count)), Quaternion.Euler (0f, 0f, 0f));
-					temp.tag = "possibleposition";
-                if (chesspositions[wbc.getxpos() - count, wbc.getypos() - count] >= 6 && chesspositions[wbc.getxpos() - count, wbc.getypos() - count] <= 10)
+                if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wbc.getxpos() - count, wbc.getypos() - count, wbc.getxpos(), wbc.getypos(), wbc.getstatus()) == false)
                 {
+                    GameObject temp;
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
-                    break;
+                    if (chesspositions[wbc.getxpos() - count, wbc.getypos() - count] >= 6 && chesspositions[wbc.getxpos() - count, wbc.getypos() - count] <= 10)
+                    {
+                        temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
+                        temp.tag = "possibleposition";
+                        break;
+                    }
                 }
 					count++;
 				}
@@ -1068,14 +1080,17 @@
 				count = 1;
 				while(chesspositions[wbc.getxpos()+count , wbc.getypos()-count] < 1 || chesspositions[wbc.getxpos() + count, wbc.getypos() - count] > 5)
             {
-					GameObject temp;
-					temp = Instantiate (possibleposition, new Vector3 (currentpos.x-(6*count) , currentpos.y , currentpos.z - (6*count)), Quaternion.Euler (0f, 0f, 0f));
-					temp.tag = "possibleposition";
-                if (chesspositions[wbc.getxpos() + count, wbc.getypos() - count] >= 6 && chesspositions[wbc.getxpos() + count, wbc.getypos() - count] <= 10)
+                if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wbc.getxpos() + count, wbc.getypos() - count, wbc.getxpos(), wbc.getypos(), wbc.getstatus()) == false)
                 {
+                    GameObject temp;
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
-                    break;
+                    if (chesspositions[wbc.getxpos() + count, wbc.getypos() - count] >= 6 && chesspositions[wbc.getxpos() + count, wbc.getypos() - count] <= 10)
+                    {
+                        temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
+                        temp.tag = "possibleposition";
+                        break;
+                    }
                 }
 					count++;
 				}
@@ -1087,14 +1102,17 @@
 				count = 1;
 				while(chesspositions[wbc.getxpos()+count , wbc.getypos()+count] < 1 || chesspositions[wbc.getxpos() + count, wbc.getypos() + count] > 5)
             {
-					GameObject temp;
-					temp = Instantiate (possibleposition, new Vector3 (currentpos.x+(6*count) , currentpos.y , currentpos.z - (6*count)), Quaternion.Euler (0f, 0f, 0f));
-					temp.tag = "possibleposition";
-                if (chesspositions[wbc.getxpos() + count, wbc.getypos() + count] >=6 && chesspositions[wbc.getxpos() + count, wbc.getypos() + count] <= 10)
+                if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wbc.getxpos() + count, wbc.getypos() + count, wbc.getxpos(), wbc.getypos(), wbc.getstatus()) == false)
                 {
+                    GameObject temp;
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x + (6 * count), currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
-                    break;
+                    if (chesspositions[wbc.getxpos() + count, wbc.getypos() + count] >= 6 && chesspositions[wbc.getxpos() + count, wbc.getypos() + count] <= 10)
+                    {
+                        temp = Instantiate(possibleposition, new Vector3(currentpos.x + (6 * count), currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
+                        temp.tag = "possibleposition";
+                        break;
+                    }
                 }
 					count++;
 				}
@@ -1214,14 +1232,17 @@
 			try{
 				while(chesspositions[wqc.getxpos()-count , wqc.getypos()+count]<1 || chesspositions[wqc.getxpos() - count, wqc.getypos() + count] > 5)
             {
-					GameObject temp;
-					temp = Instantiate (possibleposition, new Vector3 (currentpos.x+(6*count) , currentpos.y , currentpos.z + (6*count)), Quaternion.Euler (0f, 0f, 0f));
-					temp.tag = "possibleposition";
-                if (chesspositions[wqc.getxpos() - count, wqc.getypos() + count] >= 6 && chesspositions[wqc.getxpos() - count, wqc.getypos() + count] <= 10)
+                if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wqc.getxpos() - count, wqc.getypos() + count, wqc.getxpos(), wqc.getypos(), wqc.getstatus()) == false)
                 {
+                    GameObject temp;
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x + (6 * count), currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
-                    break;
+                    if (chesspositions[wqc.getxpos() - count, wqc.getypos() + count] >= 6 && chesspositions[wqc.getxpos() - count, wqc.getypos() + count] <= 10)
+                    {
+                        temp = Instantiate(possibleposition, new Vector3(currentpos.x + (6 * count), currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
+                        temp.tag = "possibleposition";
+                        break;
+                    }
                 }
 					count++;
 				}
@@ -1232,14 +1253,17 @@
 				count = 1;
 				while(chesspositions[wqc.getxpos()-count , wqc.getypos()-count]< 1 || chesspositions[wqc.getxpos() - count, wqc.getypos() - count] > 5)
             {
-					GameObject temp;
-					temp = Instantiate (possibleposition, new Vector3 (currentpos.x-(6*count) , currentpos.y , currentpos.z + (6*count)), Quaternion.Euler (0f, 0f, 0f));
-					temp.tag = "possibleposition";
-                if (chesspositions[wqc.getxpos() - count, wqc.getypos() - count] >= 6 && chesspositions[wqc.getxpos() - count, wqc.getypos() - count] <= 10)
+                if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wqc.getxpos() - count, wqc.getypos() - count, wqc.getxpos(), wqc.getypos(), wqc.getstatus()) == false)
                 {
+                    GameObject temp;
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
-                    break;
+                    if (chesspositions[wqc.getxpos() - count, wqc.getypos() - count] >= 6 && chesspositions[wqc.getxpos() - count, wqc.getypos() - count] <= 10)
+                    {
+                        temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
+                        temp.tag = "possibleposition";
+                        break;
+                    }
                 }
 					count++;
 				}
@@ -1250,7 +1274,9 @@
 				count = 1;
 				while(chesspositions[wqc.getxpos()+count , wqc.getypos()-count] < 1 || chesspositions[wqc.getxpos() + count, wqc.getypos() - count] > 5 )
             {
-					GameObject temp;
+                    if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wqc.getxpos() + count, wqc.getypos() - count, wqc.getxpos(), wqc.getypos(), wqc.getstatus()) == false)
+					{
+                    GameObject temp;
 					temp = Instantiate (possibleposition, new Vector3 (currentpos.x-(6*count) , currentpos.y , currentpos.z - (6*count)), Quaternion.Euler (0f, 0f, 0f));
 					temp.tag = "possibleposition";
                 if (chesspositions[wqc.getxpos() + count, wqc.getypos() - count] >= 6 && chesspositions[wqc.getxpos() + count, wqc.getypos() - count] <= 10)
@@ -1258,6 +1284,7 @@
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
                     break;
+                }
                 }
 					count++;
 				}
@@ -1269,14 +1296,17 @@
 				count = 1;
 				while(chesspositions[wqc.getxpos()+count , wqc.getypos()+count] < 1 || chesspositions[wqc.getxpos() + count, wqc.getypos() + count] > 5)
             {
-					GameObject temp;
-					temp = Instantiate (possibleposition, new Vector3 (currentpos.x+(6*count) , currentpos.y , currentpos.z - (6*count)), Quaternion.Euler (0f, 0f, 0f));
-					temp.tag = "possibleposition";
-                if (chesspositions[wqc.getxpos() + count, wqc.getypos() + count] >= 6 && chesspositions[wqc.getxpos() + count, wqc.getypos() + count] <= 10)
+                if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wqc.getxpos() + count, wqc.getypos() + count, wqc.getxpos(), wqc.getypos(), wqc.getstatus()) == false)
                 {
+                    GameObject temp;
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x + (6 * count), currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
-                    break;
+                    if (chesspositions[wqc.getxpos() + count, wqc.getypos() + count] >= 6 && chesspositions[wqc.getxpos() + count, wqc.getypos() + count] <= 10)
+                    {
+                        temp = Instantiate(possibleposition, new Vector3(currentpos.x + (6 * count), currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
+                        temp.tag = "possibleposition";
+                        break;
+                    }
                 }
 					count++;
 				}
@@ -1288,14 +1318,17 @@
 				count = 1;
 				while(chesspositions[wqc.getxpos()-count , wqc.getypos()]<1 || chesspositions[wqc.getxpos() - count, wqc.getypos()] > 5)
             {
-					GameObject temp;
-					temp = Instantiate (possibleposition, new Vector3 (currentpos.x , currentpos.y , currentpos.z + (6*count)), Quaternion.Euler (0f, 0f, 0f));
-					temp.tag = "possibleposition";
-                if (chesspositions[wqc.getxpos() - count, wqc.getypos()] >= 6 && chesspositions[wqc.getxpos() - count, wqc.getypos()] <= 10)
+                if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wqc.getxpos() - count, wqc.getypos(), wqc.getxpos(), wqc.getypos(), wqc.getstatus()) == false)
                 {
+                    GameObject temp;
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x, currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
-                    break;
+                    if (chesspositions[wqc.getxpos() - count, wqc.getypos()] >= 6 && chesspositions[wqc.getxpos() - count, wqc.getypos()] <= 10)
+                    {
+                        temp = Instantiate(possibleposition, new Vector3(currentpos.x, currentpos.y, currentpos.z + (6 * count)), Quaternion.Euler(0f, 0f, 0f));
+                        temp.tag = "possibleposition";
+                        break;
+                    }
                 }
                     count++;
 				}
@@ -1306,14 +1339,17 @@
 				count = 1;
 				while(chesspositions[wqc.getxpos()+count , wqc.getypos()] < 1 || chesspositions[wqc.getxpos() + count, wqc.getypos()] > 5)
             {
-					GameObject temp;
-					temp = Instantiate (possibleposition, new Vector3 (currentpos.x , currentpos.y , currentpos.z - (6*count)), Quaternion.Euler (0f, 0f, 0f));
-					temp.tag = "possibleposition";
-                if (chesspositions[wqc.getxpos() + count, wqc.getypos()] >= 6 && chesspositions[wqc.getxpos() + count, wqc.getypos()] <= 10)
+                if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wqc.getxpos() + count, wqc.getypos(), wqc.getxpos(), wqc.getypos(), wqc.getstatus()) == false)
                 {
+                    GameObject temp;
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x, currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
-                    break;
+                    if (chesspositions[wqc.getxpos() + count, wqc.getypos()] >= 6 && chesspositions[wqc.getxpos() + count, wqc.getypos()] <= 10)
+                    {
+                        temp = Instantiate(possibleposition, new Vector3(currentpos.x, currentpos.y, currentpos.z - (6 * count)), Quaternion.Euler(0f, 0f, 0f));
+                        temp.tag = "possibleposition";
+                        break;
+                    }
                 }
 					count++;
 				}
@@ -1324,14 +1360,17 @@
 				count = 1;
 				while(chesspositions[wqc.getxpos() , wqc.getypos()-count] < 1 || chesspositions[wqc.getxpos(), wqc.getypos() - count] > 5)
             {
-					GameObject temp;
-					temp = Instantiate (possibleposition, new Vector3 (currentpos.x - (6*count), currentpos.y , currentpos.z ), Quaternion.Euler (0f, 0f, 0f));
-					temp.tag = "possibleposition";
-                if (chesspositions[wqc.getxpos(), wqc.getypos() - count] >= 6 && chesspositions[wqc.getxpos(), wqc.getypos() - count] <= 10)
+                if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wqc.getxpos(), wqc.getypos() - count, wqc.getxpos(), wqc.getypos(), wqc.getstatus()) == false)
                 {
+                    GameObject temp;
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
-                    break;
+                    if (chesspositions[wqc.getxpos(), wqc.getypos() - count] >= 6 && chesspositions[wqc.getxpos(), wqc.getypos() - count] <= 10)
+                    {
+                        temp = Instantiate(possibleposition, new Vector3(currentpos.x - (6 * count), currentpos.y, currentpos.z), Quaternion.Euler(0f, 0f, 0f));
+                        temp.tag = "possibleposition";
+                        break;
+                    }
                 }
 					count++;
 				}
@@ -1342,14 +1381,17 @@
 				count = 1;
 				while(chesspositions[wqc.getxpos() , wqc.getypos()+count] < 1 || chesspositions[wqc.getxpos(), wqc.getypos() + count] > 5)
             {
-					GameObject temp;
-					temp = Instantiate (possibleposition, new Vector3 (currentpos.x + (6*count), currentpos.y , currentpos.z ), Quaternion.Euler (0f, 0f, 0f));
-					temp.tag = "possibleposition";
-                if (chesspositions[wqc.getxpos(), wqc.getypos() + count] >= 6 && chesspositions[wqc.getxpos(), wqc.getypos() + count] <= 10)
+                if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wqc.getxpos(), wqc.getypos() + count, wqc.getxpos(), wqc.getypos(), wqc.getstatus()) == false)
                 {
+                    GameObject temp;
                     temp = Instantiate(possibleposition, new Vector3(currentpos.x + (6 * count), currentpos.y, currentpos.z), Quaternion.Euler(0f, 0f, 0f));
                     temp.tag = "possibleposition";
-                    break;
+                    if (chesspositions[wqc.getxpos(), wqc.getypos() + count] >= 6 && chesspositions[wqc.getxpos(), wqc.getypos() + count] <= 10)
+                    {
+                        temp = Instantiate(possibleposition, new Vector3(currentpos.x + (6 * count), currentpos.y, currentpos.z), Quaternion.Euler(0f, 0f, 0f));
+                        temp.tag = "possibleposition";
+                        break;
+                    }
                 }
 					count++;
 				}
@@ -1552,80 +1594,104 @@
 			try{
 			if(chesspositions[wkc.getxpos()-2 , wkc.getypos()+1] < 1 || chesspositions[wkc.getxpos() - 2, wkc.getypos() + 1] > 5)
             {
+                if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wkc.getxpos() - 2, wkc.getypos() + 1 , wkc.getxpos() , wkc.getypos() , wkc.getstatus()) == false)
+                {
 				GameObject temp;
 				temp = Instantiate (possibleposition, new Vector3 (currentpos.x + 6f, currentpos.y , currentpos.z +12f), Quaternion.Euler (0f, 0f, 0f));
 				temp.tag = "possibleposition";
-			}
+                }
+            }
 			}catch(Exception e){
 			}
 			try{
-				if(chesspositions[wkc.getxpos()-2 , wkc.getypos()-1] < 1 || chesspositions[wkc.getxpos() - 2, wkc.getypos() - 1] > 5)
-            {
-					GameObject temp;
-					temp = Instantiate (possibleposition, new Vector3 (currentpos.x - 6f, currentpos.y , currentpos.z +12f), Quaternion.Euler (0f, 0f, 0f));
-					temp.tag = "possibleposition";
-				}
+                if (chesspositions[wkc.getxpos() - 2, wkc.getypos() - 1] < 1 || chesspositions[wkc.getxpos() - 2, wkc.getypos() - 1] > 5)
+                {
+                    if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wkc.getxpos() - 2, wkc.getypos() - 1, wkc.getxpos(), wkc.getypos(), wkc.getstatus()) == false)
+                    {
+                        GameObject temp;
+                        temp = Instantiate(possibleposition, new Vector3(currentpos.x - 6f, currentpos.y, currentpos.z + 12f), Quaternion.Euler(0f, 0f, 0f));
+                        temp.tag = "possibleposition";
+                    }
+                }
 			}catch(Exception e){
 			
 			}
 
 			try{
-				if(chesspositions[wkc.getxpos()-1 , wkc.getypos()-2] < 1 || chesspositions[wkc.getxpos() - 1, wkc.getypos() - 2] > 5)
-            {
-					GameObject temp;
-					temp = Instantiate (possibleposition, new Vector3 (currentpos.x - 12f, currentpos.y , currentpos.z +6f), Quaternion.Euler (0f, 0f, 0f));
-					temp.tag = "possibleposition";
-				}
+                if (chesspositions[wkc.getxpos() - 1, wkc.getypos() - 2] < 1 || chesspositions[wkc.getxpos() - 1, wkc.getypos() - 2] > 5)
+                {
+                    if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wkc.getxpos() - 1, wkc.getypos() - 2, wkc.getxpos(), wkc.getypos(), wkc.getstatus()) == false)
+                    {
+                        GameObject temp;
+                        temp = Instantiate(possibleposition, new Vector3(currentpos.x - 12f, currentpos.y, currentpos.z + 6f), Quaternion.Euler(0f, 0f, 0f));
+                        temp.tag = "possibleposition";
+                    }
+                }
 			}catch(Exception e){
 
 			}
 			try{
-				if(chesspositions[wkc.getxpos()-1 , wkc.getypos()+2] < 1 || chesspositions[wkc.getxpos() - 1, wkc.getypos() + 2] > 5)
-            {
-					GameObject temp;
-					temp = Instantiate (possibleposition, new Vector3 (currentpos.x + 12f, currentpos.y , currentpos.z +6f), Quaternion.Euler (0f, 0f, 0f));
-					temp.tag = "possibleposition";
-				}
+                if (chesspositions[wkc.getxpos() - 1, wkc.getypos() + 2] < 1 || chesspositions[wkc.getxpos() - 1, wkc.getypos() + 2] > 5)
+                {
+                    if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wkc.getxpos() - 1, wkc.getypos() + 2, wkc.getxpos(), wkc.getypos(), wkc.getstatus()) == false)
+                    {
+                        GameObject temp;
+                        temp = Instantiate(possibleposition, new Vector3(currentpos.x + 12f, currentpos.y, currentpos.z + 6f), Quaternion.Euler(0f, 0f, 0f));
+                        temp.tag = "possibleposition";
+                    }
+                }
 			}catch(Exception e){
 
 			}
 			try{
-				if(chesspositions[wkc.getxpos()+2 , wkc.getypos()+1] < 1 || chesspositions[wkc.getxpos() + 2, wkc.getypos() + 1] > 5)
-            {
-					GameObject temp;
-					temp = Instantiate (possibleposition, new Vector3 (currentpos.x + 6f, currentpos.y , currentpos.z - 12f), Quaternion.Euler (0f, 0f, 0f));
-					temp.tag = "possibleposition";
-				}
+                if (chesspositions[wkc.getxpos() + 2, wkc.getypos() + 1] < 1 || chesspositions[wkc.getxpos() + 2, wkc.getypos() + 1] > 5)
+                {
+                    if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wkc.getxpos() + 2, wkc.getypos() + 1, wkc.getxpos(), wkc.getypos(), wkc.getstatus()) == false)
+                    {
+                        GameObject temp;
+                        temp = Instantiate(possibleposition, new Vector3(currentpos.x + 6f, currentpos.y, currentpos.z - 12f), Quaternion.Euler(0f, 0f, 0f));
+                        temp.tag = "possibleposition";
+                    }
+                }
 			}catch(Exception e){
 
 			}
 			try{
-				if(chesspositions[wkc.getxpos()+2 , wkc.getypos()-1] < 1 || chesspositions[wkc.getxpos() + 2, wkc.getypos() - 1] > 5)
-            {
-					GameObject temp;
-					temp = Instantiate (possibleposition, new Vector3 (currentpos.x - 6f, currentpos.y , currentpos.z - 12f), Quaternion.Euler (0f, 0f, 0f));
-					temp.tag = "possibleposition";
-				}
+                if (chesspositions[wkc.getxpos() + 2, wkc.getypos() - 1] < 1 || chesspositions[wkc.getxpos() + 2, wkc.getypos() - 1] > 5)
+                {
+                    if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wkc.getxpos() + 2, wkc.getypos() - 1, wkc.getxpos(), wkc.getypos(), wkc.getstatus()) == false)
+                    {
+                        GameObject temp;
+                        temp = Instantiate(possibleposition, new Vector3(currentpos.x - 6f, currentpos.y, currentpos.z - 12f), Quaternion.Euler(0f, 0f, 0f));
+                        temp.tag = "possibleposition";
+                    }
+                }
 			}catch(Exception e){
 
 			}
 			try{
-				if(chesspositions[wkc.getxpos()+1 , wkc.getypos()+2] < 1 || chesspositions[wkc.getxpos() + 1, wkc.getypos() + 2] > 5)
-            {
-					GameObject temp;
-					temp = Instantiate (possibleposition, new Vector3 (currentpos.x + 12f, currentpos.y , currentpos.z - 6f), Quaternion.Euler (0f, 0f, 0f));
-					temp.tag = "possibleposition";
-				}
+                if (chesspositions[wkc.getxpos() + 1, wkc.getypos() + 2] < 1 || chesspositions[wkc.getxpos() + 1, wkc.getypos() + 2] > 5)
+                {
+                    if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wkc.getxpos() + 1, wkc.getypos() + 2, wkc.getxpos(), wkc.getypos(), wkc.getstatus()) == false)
+                    {
+                        GameObject temp;
+                        temp = Instantiate(possibleposition, new Vector3(currentpos.x + 12f, currentpos.y, currentpos.z - 6f), Quaternion.Euler(0f, 0f, 0f));
+                        temp.tag = "possibleposition";
+                    }
+                }
 			}catch(Exception e){
 
 			}
 			try{
-				if(chesspositions[wkc.getxpos()+1 , wkc.getypos()-2] < 1 || chesspositions[wkc.getxpos() + 1, wkc.getypos() - 2] > 5)
-            {
-					GameObject temp;
-					temp = Instantiate (possibleposition, new Vector3 (currentpos.x - 12f, currentpos.y , currentpos.z - 6f), Quaternion.Euler (0f, 0f, 0f));
-					temp.tag = "possibleposition";
-				}
+                if (chesspositions[wkc.getxpos() + 1, wkc.getypos() - 2] < 1 || chesspositions[wkc.getxpos() + 1, wkc.getypos() - 2] > 5)
+                {
+                    if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wkc.getxpos() + 1, wkc.getypos() - 2, wkc.getxpos(), wkc.getypos(), wkc.getstatus()) == false)
+                    {
+                        GameObject temp;
+                        temp = Instantiate(possibleposition, new Vector3(currentpos.x - 12f, currentpos.y, currentpos.z - 6f), Quaternion.Euler(0f, 0f, 0f));
+                        temp.tag = "possibleposition";
+                    }
+                }
 			}catch(Exception e){
 
 			}
@@ -1783,7 +1849,7 @@
 
         try
         {
-            if ((chesspositions[wkic.getxpos() - 1, wkic.getypos() + 1] < 1 || chesspositions[wkic.getxpos() - 1, wkic.getypos() - 1] > 5) && wkic.predictwhitecheck(wkic.getxpos() - 1, wkic.getypos() + 1, wkic.getxpos(), wkic.getypos(), wkic.getstatus()) == false)
+            if ((chesspositions[wkic.getxpos() - 1, wkic.getypos() + 1] < 1 || chesspositions[wkic.getxpos() - 1, wkic.getypos() + 1] > 5) && wkic.predictwhitecheck(wkic.getxpos() - 1, wkic.getypos() + 1, wkic.getxpos(), wkic.getypos(), wkic.getstatus()) == false)
             {
                 GameObject temp;
                 temp = Instantiate(possibleposition, new Vector3(currentpos.x + 6f, currentpos.y, currentpos.z + 6f), Quaternion.Euler(0f, 0f, 0f));

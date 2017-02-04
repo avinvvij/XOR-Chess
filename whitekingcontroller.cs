@@ -55,9 +55,12 @@ public class whitekingcontroller : MonoBehaviour {
         return this.status;
     }
 
-    public bool checkwhitecheck(int x , int y)
+    public bool checkwhitecheck(int x, int y, int[,] cp , int from = 0)
     {
-        this.chesspositions = ( int[,] )chesscontroller.GetComponent<chesscontroller>().getchesspositions().Clone();
+        if (from == 0)
+            this.chesspositions = (int[,])chesscontroller.GetComponent<chesscontroller>().getchesspositions().Clone();
+        else
+            this.chesspositions = (int[,])cp.Clone();
         //printchesspositions();
         //print("here");
         bool result = false;
@@ -458,10 +461,10 @@ public class whitekingcontroller : MonoBehaviour {
     public bool predictwhitediffcheck(int x , int y , int prevx , int prevy , int status)
     {
         bool result = false;
-        int[,] cp = (int[,])chesscontroller.GetComponent<chesscontroller>().getchesspositions();
+        int[,] cp = (int[,])chesscontroller.GetComponent<chesscontroller>().getchesspositions().Clone();
         cp[x, y] = status;
         cp[prevx, prevy] = 0;
-        result = checkwhitecheck(xpos, ypos);
+        result = checkwhitecheck(xpos, ypos , cp , 1);
         return result;
     }
 
