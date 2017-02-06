@@ -229,7 +229,7 @@ public class whitekingcontroller : MonoBehaviour {
 
         try
         {
-            if((chesspositions[x-1 , y-1] == 6 || chesspositions[x-1 , y+1] == 6) && result == false)
+            if((chesspositions[x-1 , y-1] == 6) && result == false)
             {
                 notifications.text = "Check To White";
                 result = true;
@@ -241,7 +241,104 @@ public class whitekingcontroller : MonoBehaviour {
 
         try
         {
-            if ((chesspositions[x - 2, y - 1] == 10 || chesspositions[x - 2, y + 1] == 10 || chesspositions[x + 2, y + 1] == 10 || chesspositions[x + 2, y - 1] == 10 || chesspositions[x - 1, y + 2] == 10 || chesspositions[x + 1, y + 2] == 10 || chesspositions[x - 1, y - 2]  == 10 || chesspositions[x + 1, y - 2] == 10) && result == false)
+            if ((chesspositions[x - 1, y + 1] == 6) && result == false)
+            {
+                notifications.text = "Check To White";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        try
+        {
+            if ((chesspositions[x - 2, y - 1] == 10 ) && result == false)
+            {
+                notifications.text = "Check To White";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x - 2, y + 1] == 10 ) && result == false)
+            {
+                notifications.text = "Check To White";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x + 2, y + 1] == 10 ) && result == false)
+            {
+                notifications.text = "Check To White";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x + 2, y - 1] == 10 ) && result == false)
+            {
+                notifications.text = "Check To White";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x - 1, y + 2] == 10 ) && result == false)
+            {
+                notifications.text = "Check To White";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x + 1, y + 2] == 10 ) && result == false)
+            {
+                notifications.text = "Check To White";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x - 1, y - 2] == 10 ) && result == false)
+            {
+                notifications.text = "Check To White";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x + 1, y - 2] == 10 ) && result == false)
             {
                 notifications.text = "Check To White";
                 result = true;
@@ -431,7 +528,7 @@ public class whitekingcontroller : MonoBehaviour {
 
         try
         {
-            if ((cp[x - 1, y - 1] == 6 || cp[x - 1, y + 1] == 6))
+            if ((chesspositions[x - 1, y - 1] == 6) && result == false)
             {
                 notifications.text = "Check Predicted";
                 result = true;
@@ -444,7 +541,104 @@ public class whitekingcontroller : MonoBehaviour {
 
         try
         {
-            if ((cp[x - 2, y - 1] == 10 || cp[x - 2, y + 1] == 10 || cp[x + 2, y + 1] == 10 || cp[x + 2, y - 1] == 10 || cp[x - 1, y + 2] == 10 || cp[x + 1, y + 2] == 10 || cp[x - 1, y - 2] == 10 || cp[x + 1, y - 2] == 10))
+            if ((chesspositions[x - 1, y + 1] == 6) && result == false)
+            {
+                notifications.text = "Check Predicted";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        try
+        {
+            if ((chesspositions[x - 2, y - 1] == 10) && result == false)
+            {
+                notifications.text = "Check Predicted";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x - 2, y + 1] == 10) && result == false)
+            {
+                notifications.text = "Check Predicted";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x + 2, y + 1] == 10) && result == false)
+            {
+                notifications.text = "Check Predicted";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x + 2, y - 1] == 10) && result == false)
+            {
+                notifications.text = "Check Predicted";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x - 1, y + 2] == 10) && result == false)
+            {
+                notifications.text = "Check Predicted";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x + 1, y + 2] == 10) && result == false)
+            {
+                notifications.text = "Check Predicted";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x - 1, y - 2] == 10) && result == false)
+            {
+                notifications.text = "Check Predicted";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x + 1, y - 2] == 10) && result == false)
             {
                 notifications.text = "Check Predicted";
                 result = true;

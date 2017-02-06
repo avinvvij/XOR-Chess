@@ -231,7 +231,19 @@ public class blackkingcontroller : MonoBehaviour {
 
         try
         {
-            if ((chesspositions[x + 1, y - 1] == 1 || chesspositions[x + 1, y + 1] == 1) && result == false)
+            if ((chesspositions[x + 1, y + 1] == 1) && result == false)
+            {
+                notifications.text = "Check To Black";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x + 1, y - 1] == 1) && result == false)
             {
                 notifications.text = "Check To Black";
                 result = true;
@@ -244,7 +256,7 @@ public class blackkingcontroller : MonoBehaviour {
 
         try
         {
-            if ((chesspositions[x - 2, y - 1] == 5 || chesspositions[x - 2, y + 1] == 5 || chesspositions[x + 2, y + 1] == 5 || chesspositions[x + 2, y - 1] == 5 || chesspositions[x - 1, y + 2] == 5 || chesspositions[x + 1, y + 2] == 5 || chesspositions[x - 1, y - 2] == 5 || chesspositions[x + 1, y - 2] == 5) && result == false)
+            if ((chesspositions[x - 2, y - 1] == 5) && result == false)
             {
                 notifications.text = "Check To Black";
                 result = true;
@@ -254,6 +266,91 @@ public class blackkingcontroller : MonoBehaviour {
         {
 
         }
+        try
+        {
+            if ((chesspositions[x - 2, y + 1] == 5) && result == false)
+            {
+                notifications.text = "Check To Black";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x + 2, y + 1] == 5) && result == false)
+            {
+                notifications.text = "Check To Black";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x + 2, y - 1] == 5) && result == false)
+            {
+                notifications.text = "Check To Black";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x - 1, y + 2] == 5) && result == false)
+            {
+                notifications.text = "Check To Black";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x + 1, y + 2] == 5) && result == false)
+            {
+                notifications.text = "Check To Black";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x - 1, y - 2] == 5) && result == false)
+            {
+                notifications.text = "Check To Black";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x +1 , y - 2] == 5) && result == false)
+            {
+                notifications.text = "Check To Black";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+
 
         return result;
     }
@@ -434,7 +531,19 @@ public class blackkingcontroller : MonoBehaviour {
 
         try
         {
-            if ((cp[x + 1, y - 1] == 1 || cp[x + 1, y + 1] == 1))
+            if ((chesspositions[x + 1, y + 1] == 1) && result == false)
+            {
+                notifications.text = "Check Predicted";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x + 1, y - 1] == 1) && result == false)
             {
                 notifications.text = "Check Predicted";
                 result = true;
@@ -447,7 +556,91 @@ public class blackkingcontroller : MonoBehaviour {
 
         try
         {
-            if ((cp[x - 2, y - 1] == 5 || cp[x - 2, y + 1] == 5 || cp[x + 2, y + 1] == 5 || cp[x + 2, y - 1] == 5 || cp[x - 1, y + 2] == 5 || cp[x + 1, y + 2] == 5 || cp[x - 1, y - 2] == 5 || cp[x + 1, y - 2] == 5))
+            if ((chesspositions[x - 2, y - 1] == 5) && result == false)
+            {
+                notifications.text = "Check Predicted";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x - 2, y + 1] == 5) && result == false)
+            {
+                notifications.text = "Check Predicted";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x + 2, y + 1] == 5) && result == false)
+            {
+                notifications.text = "Check Predicted";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x + 2, y - 1] == 5) && result == false)
+            {
+                notifications.text = "Check Predicted";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x - 1, y + 2] == 5) && result == false)
+            {
+                notifications.text = "Check Predicted";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x + 1, y + 2] == 5) && result == false)
+            {
+                notifications.text = "Check Predicted";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x - 1, y - 2] == 5) && result == false)
+            {
+                notifications.text = "Check Predicted";
+                result = true;
+            }
+        }
+        catch (Exception e)
+        {
+
+        }
+        try
+        {
+            if ((chesspositions[x + 1, y - 2] == 5) && result == false)
             {
                 notifications.text = "Check Predicted";
                 result = true;

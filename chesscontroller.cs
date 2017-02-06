@@ -697,21 +697,23 @@
 				GameObject[] temps = GameObject.FindGameObjectsWithTag ("possibleposition");
 				for (int i = 0; i < temps.Length; i++)
 					Destroy (temps [i]);
-            if (chesspositions[pc.getxpos() - 1, pc.getypos()] >= 1 && chesspositions[pc.getxpos() - 1, pc.getypos()] <= 10) {
+                if (chesspositions[pc.getxpos() - 1, pc.getypos()] >= 1 && chesspositions[pc.getxpos() - 1, pc.getypos()] <= 10 && chesspositions[pc.getxpos() - 1, pc.getypos()] != 20 && chesspositions[pc.getxpos() - 1, pc.getypos()] != 21)
+                {
             } if (chesspositions[pc.getxpos() - 1, pc.getypos()] == 0 && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(pc.getxpos() - 1, pc.getypos() , pc.getxpos() , pc.getypos() , pc.getstatus()) == false)
             {
                 GameObject temp;
                 Vector3 currentposition = pc.getcurrentposition();
                 temp = (GameObject)Instantiate(possibleposition, new Vector3(currentposition.x, currentposition.y, currentposition.z + 6f), Quaternion.Euler(0f, 0f, 0f));
                 temp.tag = "possibleposition";
+                if (chesspositions[pc.getxpos() - 2, pc.getypos()] == 0 && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(pc.getxpos() - 2, pc.getypos(), pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
+                {
+                    GameObject temp1;
+                    Vector3 currentposition1 = pc.getcurrentposition();
+                    temp1 = (GameObject)Instantiate(possibleposition, new Vector3(currentposition1.x, currentposition1.y, currentposition1.z + 12f), Quaternion.Euler(0f, 0f, 0f));
+                    temp1.tag = "possibleposition";
+                }
             }
-            if (chesspositions[pc.getxpos() - 2, pc.getypos()] == 0 && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(pc.getxpos() - 2, pc.getypos(), pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
-            { 
-                GameObject temp;
-                Vector3 currentposition = pc.getcurrentposition();
-                temp = (GameObject)Instantiate(possibleposition, new Vector3(currentposition.x, currentposition.y, currentposition.z + 12f), Quaternion.Euler(0f, 0f, 0f));
-                temp.tag = "possibleposition";
-            }
+            
             try
             {
                 if (chesspositions[pc.getxpos() - 1, pc.getypos() - 1] >= 6 && chesspositions[pc.getxpos() - 1, pc.getypos() - 1] <= 10 && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(pc.getxpos() - 1, pc.getypos()-1, pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
@@ -799,29 +801,28 @@
             GameObject[] temps = GameObject.FindGameObjectsWithTag("possibleposition");
             for (int i = 0; i < temps.Length; i++)
                 Destroy(temps[i]);
-            if (chesspositions[pc.getxpos() + 1, pc.getypos()] == 1 || chesspositions[pc.getxpos() + 1, pc.getypos()] == 2 )
+            if (chesspositions[pc.getxpos() + 1, pc.getypos()] >= 1 && chesspositions[pc.getxpos() + 1, pc.getypos()] <= 10 && chesspositions[pc.getxpos() + 1, pc.getypos()] !=20 && chesspositions[pc.getxpos() + 1, pc.getypos()] != 21)
             {
             }
-            else if (chesspositions[pc.getxpos() + 2, pc.getypos()] == 1 || chesspositions[pc.getxpos() + 2, pc.getypos()] == 2)
+            if (chesspositions[pc.getxpos() + 1, pc.getypos()] == 0 && blackking.GetComponent<blackkingcontroller>().predictblackdiffcheck(pc.getxpos() + 1, pc.getypos(), pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
             {
                 GameObject temp;
                 Vector3 currentposition = pc.getcurrentposition();
                 temp = (GameObject)Instantiate(possibleposition, new Vector3(currentposition.x, currentposition.y, currentposition.z - 6f), Quaternion.Euler(0f, 0f, 0f));
                 temp.tag = "possibleposition";
+                if (chesspositions[pc.getxpos() + 2, pc.getypos()] == 0 && blackking.GetComponent<blackkingcontroller>().predictblackdiffcheck(pc.getxpos() + 2, pc.getypos(), pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
+                {
+                    GameObject temp1;
+                    Vector3 currentposition1 = pc.getcurrentposition();
+                    temp1 = (GameObject)Instantiate(possibleposition, new Vector3(currentposition1.x, currentposition1.y, currentposition1.z - 12f), Quaternion.Euler(0f, 0f, 0f));
+                    temp1.tag = "possibleposition";
+                }
                 
             }
-            else
-            {
-                GameObject temp;
-                Vector3 currentposition = pc.getcurrentposition();
-                temp = (GameObject)Instantiate(possibleposition, new Vector3(currentposition.x, currentposition.y, currentposition.z - 6f), Quaternion.Euler(0f, 0f, 0f));
-                temp.tag = "possibleposition";
-                temp = (GameObject)Instantiate(possibleposition, new Vector3(currentposition.x, currentposition.y, currentposition.z - 12f), Quaternion.Euler(0f, 0f, 0f));
-                temp.tag = "possibleposition";
-            }
+           
             try
             {
-                if (chesspositions[pc.getxpos() + 1, pc.getypos() - 1] == 1)
+                if ((chesspositions[pc.getxpos() + 1, pc.getypos() - 1] >= 1 && chesspositions[pc.getxpos() + 1, pc.getypos() - 1] <= 5) && blackking.GetComponent<blackkingcontroller>().predictblackdiffcheck(pc.getxpos() + 1, pc.getypos() - 1, pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
                 {
                     GameObject temp;
                     Vector3 currentposition = pc.getcurrentposition();
@@ -834,7 +835,7 @@
             }
             try
             {
-                if (chesspositions[pc.getxpos() + 1, pc.getypos() + 1] == 1)
+                if ((chesspositions[pc.getxpos() + 1, pc.getypos() + 1] >= 1 && chesspositions[pc.getxpos() + 1, pc.getypos() + 1] <= 5) && blackking.GetComponent<blackkingcontroller>().predictblackdiffcheck(pc.getxpos() + 1, pc.getypos() + 1, pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
                 {
                     GameObject temp;
                     Vector3 currentposition = pc.getcurrentposition();
@@ -848,23 +849,26 @@
         }
         else if (pc.getfirstplay() == false)
         {
-            if ((pc.getcurrentposition().z <= 23.02 && pc.getcurrentposition().z >= 19.02) || chesspositions[pc.getxpos() + 1, pc.getypos()] == 1 || chesspositions[pc.getxpos() + 1, pc.getypos()] == 2)
-            {
-            }
-            else
-            {
+            
                 GameObject[] temps = GameObject.FindGameObjectsWithTag("possibleposition");
                 for (int i = 0; i < temps.Length; i++)
                     Destroy(temps[i]);
-                GameObject temp;
-                Vector3 currentposition = pc.getcurrentposition();
-                temp = (GameObject)Instantiate(possibleposition, new Vector3(currentposition.x, currentposition.y, currentposition.z - 6f), Quaternion.Euler(0f, 0f, 0f));
-                temp.tag = "possibleposition";
-                
-            }
+                try
+                {
+                    if (chesspositions[pc.getxpos() + 1, pc.getypos()] == 0 && blackking.GetComponent<blackkingcontroller>().predictblackdiffcheck(pc.getxpos() + 1, pc.getypos(), pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
+                    {
+                        GameObject temp;
+                        Vector3 currentposition = pc.getcurrentposition();
+                        temp = (GameObject)Instantiate(possibleposition, new Vector3(currentposition.x, currentposition.y, currentposition.z - 6f), Quaternion.Euler(0f, 0f, 0f));
+                        temp.tag = "possibleposition";
+                    }
+                }
+                catch (Exception e)
+                {
+                }
             try
             {
-                if (chesspositions[pc.getxpos() + 1, pc.getypos() - 1] == 1)
+                if ((chesspositions[pc.getxpos() + 1, pc.getypos() - 1] >= 1 && chesspositions[pc.getxpos() + 1, pc.getypos() - 1] <= 5) && blackking.GetComponent<blackkingcontroller>().predictblackdiffcheck(pc.getxpos() + 1, pc.getypos() - 1, pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
                 {
                     GameObject temp;
                     Vector3 currentposition = pc.getcurrentposition();
@@ -877,7 +881,7 @@
             }
             try
             {
-                if (chesspositions[pc.getxpos() + 1, pc.getypos() + 1] == 1)
+                if ((chesspositions[pc.getxpos() + 1, pc.getypos() + 1] >= 1 && chesspositions[pc.getxpos() + 1, pc.getypos() + 1] <= 5) && blackking.GetComponent<blackkingcontroller>().predictblackdiffcheck(pc.getxpos() + 1, pc.getypos()+1, pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
                 {
                     GameObject temp;
                     Vector3 currentposition = pc.getcurrentposition();
@@ -903,7 +907,7 @@
 			int count = 1;
 			//top possiblepositions
 			try{
-				while((chesspositions[wrc.getxpos()-count , wrc.getypos()]<1 || chesspositions[wrc.getxpos() - count, wrc.getypos()] > 5))
+				while((chesspositions[wrc.getxpos()-count , wrc.getypos()]<1 || chesspositions[wrc.getxpos() - count, wrc.getypos()] > 5) && chesspositions[wrc.getxpos() - count , wrc.getypos()] != 20)
             {
                    if(whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wrc.getxpos() - count, wrc.getypos() , wrc.getxpos() , wrc.getypos() , wrc.getstatus()) == false){
 					GameObject temp;
@@ -923,7 +927,7 @@
 			}
 			try{
 				count = 1;
-				while((chesspositions[wrc.getxpos()+count , wrc.getypos()] < 1 || chesspositions[wrc.getxpos() + count, wrc.getypos()] > 5))
+                while ((chesspositions[wrc.getxpos() + count, wrc.getypos()] < 1 || chesspositions[wrc.getxpos() + count, wrc.getypos()] > 5) && chesspositions[wrc.getxpos() + count, wrc.getypos()] != 20)
             {
                     if(whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wrc.getxpos() + count, wrc.getypos(), wrc.getxpos(), wrc.getypos(), wrc.getstatus()) == false){
 					GameObject temp;
@@ -944,7 +948,7 @@
 			}
 			try{
 				count = 1;
-				while((chesspositions[wrc.getxpos() , wrc.getypos()-count]<1 || chesspositions[wrc.getxpos(), wrc.getypos() - count] > 5)  )
+                while ((chesspositions[wrc.getxpos(), wrc.getypos() - count] < 1 || chesspositions[wrc.getxpos(), wrc.getypos() - count] > 5) && chesspositions[wrc.getxpos(), wrc.getypos()-count] != 20)
             {
                     if(whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wrc.getxpos(), wrc.getypos() - count, wrc.getxpos(), wrc.getypos(), wrc.getstatus()) == false){
 					GameObject temp;
@@ -965,7 +969,7 @@
 			}
 			try{
 				count = 1;
-				while((chesspositions[wrc.getxpos() , wrc.getypos()+count]<1 || chesspositions[wrc.getxpos(), wrc.getypos() + count] > 5) )
+                while ((chesspositions[wrc.getxpos(), wrc.getypos() + count] < 1 || chesspositions[wrc.getxpos(), wrc.getypos() + count] > 5) && chesspositions[wrc.getxpos(), wrc.getypos() +count] != 20)
             {
                     if(whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wrc.getxpos(), wrc.getypos() + count, wrc.getxpos(), wrc.getypos(), wrc.getstatus()) == false){
 					GameObject temp;
@@ -1110,7 +1114,7 @@
 			int count = 1;
 			//top possiblepositions
 			try{
-				while(chesspositions[wbc.getxpos()-count , wbc.getypos()+count]< 1|| chesspositions[wbc.getxpos() - count, wbc.getypos() + count] > 5)
+				while((chesspositions[wbc.getxpos()-count , wbc.getypos()+count]< 1|| chesspositions[wbc.getxpos() - count, wbc.getypos() + count] > 5) && chesspositions[wbc.getxpos() - count , wbc.getypos()+count] != 20)
             {
                     if(whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wbc.getxpos()-count , wbc.getypos()+count , wbc.getxpos() , wbc.getypos() , wbc.getstatus()) == false){
 					GameObject temp;
@@ -1130,7 +1134,7 @@
 			}
 			try{
 				count = 1;
-				while(chesspositions[wbc.getxpos()-count , wbc.getypos()-count] < 1 || chesspositions[wbc.getxpos() - count, wbc.getypos() - count]>5)
+                while ((chesspositions[wbc.getxpos() - count, wbc.getypos() - count] < 1 || chesspositions[wbc.getxpos() - count, wbc.getypos() - count] > 5) && chesspositions[wbc.getxpos() - count, wbc.getypos() - count] != 20)
             {
                 if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wbc.getxpos() - count, wbc.getypos() - count, wbc.getxpos(), wbc.getypos(), wbc.getstatus()) == false)
                 {
@@ -1151,7 +1155,7 @@
 			}
 			try{
 				count = 1;
-				while(chesspositions[wbc.getxpos()+count , wbc.getypos()-count] < 1 || chesspositions[wbc.getxpos() + count, wbc.getypos() - count] > 5)
+                while ((chesspositions[wbc.getxpos() + count, wbc.getypos() - count] < 1 || chesspositions[wbc.getxpos() + count, wbc.getypos() - count] > 5) && chesspositions[wbc.getxpos() + count, wbc.getypos() - count] != 20)
             {
                 if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wbc.getxpos() + count, wbc.getypos() - count, wbc.getxpos(), wbc.getypos(), wbc.getstatus()) == false)
                 {
@@ -1173,7 +1177,7 @@
 
 			try{
 				count = 1;
-				while(chesspositions[wbc.getxpos()+count , wbc.getypos()+count] < 1 || chesspositions[wbc.getxpos() + count, wbc.getypos() + count] > 5)
+                while ((chesspositions[wbc.getxpos() + count, wbc.getypos() + count] < 1 || chesspositions[wbc.getxpos() + count, wbc.getypos() + count] > 5) && chesspositions[wbc.getxpos() + count, wbc.getypos() + count] != 20)
             {
                 if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wbc.getxpos() + count, wbc.getypos() + count, wbc.getxpos(), wbc.getypos(), wbc.getstatus()) == false)
                 {
@@ -1315,7 +1319,7 @@
 			int count = 1;
 			//top possiblepositions
 			try{
-				while(chesspositions[wqc.getxpos()-count , wqc.getypos()+count]<1 || chesspositions[wqc.getxpos() - count, wqc.getypos() + count] > 5)
+				while((chesspositions[wqc.getxpos()-count , wqc.getypos()+count]<1 || chesspositions[wqc.getxpos() - count, wqc.getypos() + count] > 5) && chesspositions[wqc.getxpos()-count , wqc.getypos()+count] != 20)
             {
                 if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wqc.getxpos() - count, wqc.getypos() + count, wqc.getxpos(), wqc.getypos(), wqc.getstatus()) == false)
                 {
@@ -1336,7 +1340,7 @@
 			}
 			try{
 				count = 1;
-				while(chesspositions[wqc.getxpos()-count , wqc.getypos()-count]< 1 || chesspositions[wqc.getxpos() - count, wqc.getypos() - count] > 5)
+                while ((chesspositions[wqc.getxpos() - count, wqc.getypos() - count] < 1 || chesspositions[wqc.getxpos() - count, wqc.getypos() - count] > 5) && chesspositions[wqc.getxpos() - count, wqc.getypos() - count] != 20)
             {
                 if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wqc.getxpos() - count, wqc.getypos() - count, wqc.getxpos(), wqc.getypos(), wqc.getstatus()) == false)
                 {
@@ -1357,7 +1361,7 @@
 			}
 			try{
 				count = 1;
-				while(chesspositions[wqc.getxpos()+count , wqc.getypos()-count] < 1 || chesspositions[wqc.getxpos() + count, wqc.getypos() - count] > 5 )
+                while ((chesspositions[wqc.getxpos() + count, wqc.getypos() - count] < 1 || chesspositions[wqc.getxpos() + count, wqc.getypos() - count] > 5) && chesspositions[wqc.getxpos() + count, wqc.getypos() - count] != 20)
             {
                     if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wqc.getxpos() + count, wqc.getypos() - count, wqc.getxpos(), wqc.getypos(), wqc.getstatus()) == false)
 					{
@@ -1379,7 +1383,7 @@
 
 			try{
 				count = 1;
-				while(chesspositions[wqc.getxpos()+count , wqc.getypos()+count] < 1 || chesspositions[wqc.getxpos() + count, wqc.getypos() + count] > 5)
+                while ((chesspositions[wqc.getxpos() + count, wqc.getypos() + count] < 1 || chesspositions[wqc.getxpos() + count, wqc.getypos() + count] > 5) && chesspositions[wqc.getxpos() + count, wqc.getypos() + count] != 20)
             {
                 if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wqc.getxpos() + count, wqc.getypos() + count, wqc.getxpos(), wqc.getypos(), wqc.getstatus()) == false)
                 {
@@ -1401,7 +1405,7 @@
 
 			try{
 				count = 1;
-				while(chesspositions[wqc.getxpos()-count , wqc.getypos()]<1 || chesspositions[wqc.getxpos() - count, wqc.getypos()] > 5)
+                while ((chesspositions[wqc.getxpos() - count, wqc.getypos()] < 1 || chesspositions[wqc.getxpos() - count, wqc.getypos()] > 5) && chesspositions[wqc.getxpos() - count, wqc.getypos()] != 20)
             {
                 if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wqc.getxpos() - count, wqc.getypos(), wqc.getxpos(), wqc.getypos(), wqc.getstatus()) == false)
                 {
@@ -1422,7 +1426,7 @@
 			}
 			try{
 				count = 1;
-				while(chesspositions[wqc.getxpos()+count , wqc.getypos()] < 1 || chesspositions[wqc.getxpos() + count, wqc.getypos()] > 5)
+                while ((chesspositions[wqc.getxpos() + count, wqc.getypos()] < 1 || chesspositions[wqc.getxpos() + count, wqc.getypos()] > 5) && chesspositions[wqc.getxpos() + count, wqc.getypos()] != 20)
             {
                 if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wqc.getxpos() + count, wqc.getypos(), wqc.getxpos(), wqc.getypos(), wqc.getstatus()) == false)
                 {
@@ -1443,7 +1447,7 @@
 			}
 			try{
 				count = 1;
-				while(chesspositions[wqc.getxpos() , wqc.getypos()-count] < 1 || chesspositions[wqc.getxpos(), wqc.getypos() - count] > 5)
+                while ((chesspositions[wqc.getxpos(), wqc.getypos() - count] < 1 || chesspositions[wqc.getxpos(), wqc.getypos() - count] > 5) && chesspositions[wqc.getxpos(), wqc.getypos() - count] != 20)
             {
                 if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wqc.getxpos(), wqc.getypos() - count, wqc.getxpos(), wqc.getypos(), wqc.getstatus()) == false)
                 {
@@ -1464,7 +1468,7 @@
 			}
 			try{
 				count = 1;
-				while(chesspositions[wqc.getxpos() , wqc.getypos()+count] < 1 || chesspositions[wqc.getxpos(), wqc.getypos() + count] > 5)
+                while ((chesspositions[wqc.getxpos(), wqc.getypos() + count] < 1 || chesspositions[wqc.getxpos(), wqc.getypos() + count] > 5) && chesspositions[wqc.getxpos(), wqc.getypos() + count] != 20)
             {
                 if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wqc.getxpos(), wqc.getypos() + count, wqc.getxpos(), wqc.getypos(), wqc.getstatus()) == false)
                 {
@@ -1701,7 +1705,7 @@
 			whiteknightcontroller wkc = hit.collider.gameObject.GetComponent<whiteknightcontroller> ();
 			Vector3 currentpos = wkc.getcurrentposition ();
 			try{
-			if(chesspositions[wkc.getxpos()-2 , wkc.getypos()+1] < 1 || chesspositions[wkc.getxpos() - 2, wkc.getypos() + 1] > 5)
+			if((chesspositions[wkc.getxpos()-2 , wkc.getypos()+1] < 1 || chesspositions[wkc.getxpos() - 2, wkc.getypos() + 1] > 5) && chesspositions[wkc.getxpos()-2 , wkc.getypos()+1]!=20)
             {
                 if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wkc.getxpos() - 2, wkc.getypos() + 1 , wkc.getxpos() , wkc.getypos() , wkc.getstatus()) == false)
                 {
@@ -1713,7 +1717,7 @@
 			}catch(Exception e){
 			}
 			try{
-                if (chesspositions[wkc.getxpos() - 2, wkc.getypos() - 1] < 1 || chesspositions[wkc.getxpos() - 2, wkc.getypos() - 1] > 5)
+                if ((chesspositions[wkc.getxpos() - 2, wkc.getypos() - 1] < 1 || chesspositions[wkc.getxpos() - 2, wkc.getypos() - 1] > 5) && chesspositions[wkc.getxpos() - 2, wkc.getypos() - 1] != 20)
                 {
                     if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wkc.getxpos() - 2, wkc.getypos() - 1, wkc.getxpos(), wkc.getypos(), wkc.getstatus()) == false)
                     {
@@ -1727,7 +1731,7 @@
 			}
 
 			try{
-                if (chesspositions[wkc.getxpos() - 1, wkc.getypos() - 2] < 1 || chesspositions[wkc.getxpos() - 1, wkc.getypos() - 2] > 5)
+                if ((chesspositions[wkc.getxpos() - 1, wkc.getypos() - 2] < 1 || chesspositions[wkc.getxpos() - 1, wkc.getypos() - 2] > 5) && chesspositions[wkc.getxpos() - 1, wkc.getypos() - 2] != 20)
                 {
                     if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wkc.getxpos() - 1, wkc.getypos() - 2, wkc.getxpos(), wkc.getypos(), wkc.getstatus()) == false)
                     {
@@ -1740,7 +1744,7 @@
 
 			}
 			try{
-                if (chesspositions[wkc.getxpos() - 1, wkc.getypos() + 2] < 1 || chesspositions[wkc.getxpos() - 1, wkc.getypos() + 2] > 5)
+                if ((chesspositions[wkc.getxpos() - 1, wkc.getypos() + 2] < 1 || chesspositions[wkc.getxpos() - 1, wkc.getypos() + 2] > 5) && chesspositions[wkc.getxpos() - 1, wkc.getypos() + 2] != 20)
                 {
                     if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wkc.getxpos() - 1, wkc.getypos() + 2, wkc.getxpos(), wkc.getypos(), wkc.getstatus()) == false)
                     {
@@ -1753,7 +1757,7 @@
 
 			}
 			try{
-                if (chesspositions[wkc.getxpos() + 2, wkc.getypos() + 1] < 1 || chesspositions[wkc.getxpos() + 2, wkc.getypos() + 1] > 5)
+                if ((chesspositions[wkc.getxpos() + 2, wkc.getypos() + 1] < 1 || chesspositions[wkc.getxpos() + 2, wkc.getypos() + 1] > 5) && chesspositions[wkc.getxpos() + 2, wkc.getypos() + 1] != 20)
                 {
                     if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wkc.getxpos() + 2, wkc.getypos() + 1, wkc.getxpos(), wkc.getypos(), wkc.getstatus()) == false)
                     {
@@ -1766,7 +1770,7 @@
 
 			}
 			try{
-                if (chesspositions[wkc.getxpos() + 2, wkc.getypos() - 1] < 1 || chesspositions[wkc.getxpos() + 2, wkc.getypos() - 1] > 5)
+                if ((chesspositions[wkc.getxpos() + 2, wkc.getypos() - 1] < 1 || chesspositions[wkc.getxpos() + 2, wkc.getypos() - 1] > 5) && chesspositions[wkc.getxpos() + 2, wkc.getypos() - 1] != 20)
                 {
                     if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wkc.getxpos() + 2, wkc.getypos() - 1, wkc.getxpos(), wkc.getypos(), wkc.getstatus()) == false)
                     {
@@ -1779,7 +1783,7 @@
 
 			}
 			try{
-                if (chesspositions[wkc.getxpos() + 1, wkc.getypos() + 2] < 1 || chesspositions[wkc.getxpos() + 1, wkc.getypos() + 2] > 5)
+                if ((chesspositions[wkc.getxpos() + 1, wkc.getypos() + 2] < 1 || chesspositions[wkc.getxpos() + 1, wkc.getypos() + 2] > 5) && chesspositions[wkc.getxpos() + 1, wkc.getypos() + 2] != 20)
                 {
                     if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wkc.getxpos() + 1, wkc.getypos() + 2, wkc.getxpos(), wkc.getypos(), wkc.getstatus()) == false)
                     {
@@ -1792,7 +1796,7 @@
 
 			}
 			try{
-                if (chesspositions[wkc.getxpos() + 1, wkc.getypos() - 2] < 1 || chesspositions[wkc.getxpos() + 1, wkc.getypos() - 2] > 5)
+                if ((chesspositions[wkc.getxpos() + 1, wkc.getypos() - 2] < 1 || chesspositions[wkc.getxpos() + 1, wkc.getypos() - 2] > 5) && chesspositions[wkc.getxpos()+1, wkc.getypos() - 2] != 20)
                 {
                     if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(wkc.getxpos() + 1, wkc.getypos() - 2, wkc.getxpos(), wkc.getypos(), wkc.getstatus()) == false)
                     {
