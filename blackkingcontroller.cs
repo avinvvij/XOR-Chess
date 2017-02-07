@@ -77,7 +77,7 @@ public class blackkingcontroller : MonoBehaviour {
 
             if (chesspositions[x - count, y] == 2 || chesspositions[x - count, y] == 3)
             {
-                notifications.text = "Check To Black";
+                notifications.text = (from == 0) ? notifications.text = "Check to black" : notifications.text;
                 result = true;
             }
 
@@ -98,7 +98,7 @@ public class blackkingcontroller : MonoBehaviour {
 
             if (chesspositions[x + count, y] == 2 || chesspositions[x + count, y] == 3)
             {
-                notifications.text = "Check To Black";
+                notifications.text = (from == 0) ? notifications.text = "Check to black" : notifications.text;
                 result = true;
             }
         }
@@ -118,7 +118,7 @@ public class blackkingcontroller : MonoBehaviour {
 
             if (chesspositions[x, y - count] == 2 || chesspositions[x, y - count] == 3)
             {
-                notifications.text = "Check To Black";
+                notifications.text = (from == 0) ? notifications.text = "Check to black" : notifications.text;
                 result = true;
             }
         }
@@ -138,7 +138,7 @@ public class blackkingcontroller : MonoBehaviour {
 
             if (chesspositions[x, y + count] == 2 || chesspositions[x, y + count] == 3)
             {
-                notifications.text = "Check To BLack";
+                notifications.text = (from == 0) ? notifications.text = "Check to black" : notifications.text;
                 result = true;
             }
         }
@@ -158,7 +158,7 @@ public class blackkingcontroller : MonoBehaviour {
 
             if (chesspositions[x + count, y + count] == 4 || chesspositions[x + count, y + count] == 3)
             {
-                notifications.text = "Check To Black";
+                notifications.text = (from == 0) ? notifications.text = "Check to black" : notifications.text;
                 result = true;
             }
         }
@@ -179,7 +179,7 @@ public class blackkingcontroller : MonoBehaviour {
 
             if (chesspositions[x - count, y + count] == 4 || chesspositions[x - count, y + count] == 3)
             {
-                notifications.text = "Check To Black";
+                notifications.text = (from == 0) ? notifications.text = "Check to black" : notifications.text;
                 result = true;
             }
         }
@@ -199,7 +199,7 @@ public class blackkingcontroller : MonoBehaviour {
 
             if (chesspositions[x + count, y - count] == 4 || chesspositions[x + count, y - count] == 3)
             {
-                notifications.text = "Check To Black";
+                notifications.text = (from == 0) ? notifications.text = "Check to black" : notifications.text;
                 result = true;
             }
         }
@@ -220,7 +220,7 @@ public class blackkingcontroller : MonoBehaviour {
 
             if (chesspositions[x - count, y - count] == 4 || chesspositions[x - count, y - count] == 3)
             {
-                notifications.text = "Check To Black";
+                notifications.text = (from == 0) ? notifications.text = "Check to black" : notifications.text;
                 result = true;
             }
         }
@@ -233,7 +233,7 @@ public class blackkingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x + 1, y + 1] == 1) && result == false)
             {
-                notifications.text = "Check To Black";
+                notifications.text = (from == 0) ? notifications.text = "Check to black" : notifications.text;
                 result = true;
             }
         }
@@ -245,7 +245,7 @@ public class blackkingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x + 1, y - 1] == 1) && result == false)
             {
-                notifications.text = "Check To Black";
+                notifications.text = (from == 0) ? notifications.text = "Check to black" : notifications.text;
                 result = true;
             }
         }
@@ -258,7 +258,7 @@ public class blackkingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x - 2, y - 1] == 5) && result == false)
             {
-                notifications.text = "Check To Black";
+                notifications.text = (from == 0) ? notifications.text = "Check to black" : notifications.text;
                 result = true;
             }
         }
@@ -270,7 +270,7 @@ public class blackkingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x - 2, y + 1] == 5) && result == false)
             {
-                notifications.text = "Check To Black";
+                notifications.text = (from == 0) ? notifications.text = "Check to black" : notifications.text;
                 result = true;
             }
         }
@@ -282,7 +282,7 @@ public class blackkingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x + 2, y + 1] == 5) && result == false)
             {
-                notifications.text = "Check To Black";
+                notifications.text = (from == 0) ? notifications.text = "Check to black" : notifications.text;
                 result = true;
             }
         }
@@ -294,7 +294,7 @@ public class blackkingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x + 2, y - 1] == 5) && result == false)
             {
-                notifications.text = "Check To Black";
+                notifications.text = (from == 0) ? notifications.text = "Check to black" : notifications.text;
                 result = true;
             }
         }
@@ -306,7 +306,7 @@ public class blackkingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x - 1, y + 2] == 5) && result == false)
             {
-                notifications.text = "Check To Black";
+                notifications.text = (from == 0) ? notifications.text = "Check to black" : notifications.text;
                 result = true;
             }
         }
@@ -318,7 +318,7 @@ public class blackkingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x + 1, y + 2] == 5) && result == false)
             {
-                notifications.text = "Check To Black";
+                notifications.text = (from == 0) ? notifications.text = "Check to black" : notifications.text;
                 result = true;
             }
         }
@@ -330,7 +330,7 @@ public class blackkingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x - 1, y - 2] == 5) && result == false)
             {
-                notifications.text = "Check To Black";
+                notifications.text = (from == 0) ? notifications.text = "Check to black" : notifications.text;
                 result = true;
             }
         }
@@ -342,7 +342,7 @@ public class blackkingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x +1 , y - 2] == 5) && result == false)
             {
-                notifications.text = "Check To Black";
+                notifications.text = (from == 0) ? notifications.text = "Check to black" : notifications.text;
                 result = true;
             }
         }
@@ -377,7 +377,6 @@ public class blackkingcontroller : MonoBehaviour {
 
             if (cp[x - count, y] == 2 || cp[x - count, y] == 3)
             {
-                notifications.text = "Check predicted";
                 result = true;
             }
 
@@ -398,7 +397,6 @@ public class blackkingcontroller : MonoBehaviour {
 
             if (cp[x + count, y] == 2 || cp[x + count, y] == 3)
             {
-                notifications.text = "Check predicted";
                 result = true;
             }
         }
@@ -418,7 +416,6 @@ public class blackkingcontroller : MonoBehaviour {
 
             if (cp[x, y - count] == 2 || cp[x, y - count] == 3)
             {
-                notifications.text = "Check Predicted";
                 result = true;
             }
         }
@@ -438,7 +435,6 @@ public class blackkingcontroller : MonoBehaviour {
 
             if (cp[x, y + count] == 2 || cp[x, y + count] == 3)
             {
-                notifications.text = "Check Predicted";
                 result = true;
             }
         }
@@ -458,7 +454,6 @@ public class blackkingcontroller : MonoBehaviour {
 
             if (cp[x + count, y + count] == 4 || cp[x + count, y + count] == 3)
             {
-                notifications.text = "Check Predicted";
                 result = true;
             }
         }
@@ -479,7 +474,6 @@ public class blackkingcontroller : MonoBehaviour {
 
             if (cp[x - count, y + count] == 4 || cp[x - count, y + count] == 3)
             {
-                notifications.text = "Check Predicted";
                 result = true;
             }
         }
@@ -499,7 +493,6 @@ public class blackkingcontroller : MonoBehaviour {
 
             if (cp[x + count, y - count] == 4 || cp[x + count, y - count] == 3)
             {
-                notifications.text = "Check Predicted";
                 result = true;
             }
         }
@@ -520,7 +513,6 @@ public class blackkingcontroller : MonoBehaviour {
 
             if (cp[x - count, y - count] == 4 || cp[x - count, y - count] == 3)
             {
-                notifications.text = "Check Predicted";
                 result = true;
             }
         }
@@ -533,7 +525,6 @@ public class blackkingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x + 1, y + 1] == 1) && result == false)
             {
-                notifications.text = "Check Predicted";
                 result = true;
             }
         }
@@ -545,7 +536,6 @@ public class blackkingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x + 1, y - 1] == 1) && result == false)
             {
-                notifications.text = "Check Predicted";
                 result = true;
             }
         }
@@ -558,7 +548,6 @@ public class blackkingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x - 2, y - 1] == 5) && result == false)
             {
-                notifications.text = "Check Predicted";
                 result = true;
             }
         }
@@ -570,7 +559,6 @@ public class blackkingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x - 2, y + 1] == 5) && result == false)
             {
-                notifications.text = "Check Predicted";
                 result = true;
             }
         }
@@ -582,7 +570,6 @@ public class blackkingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x + 2, y + 1] == 5) && result == false)
             {
-                notifications.text = "Check Predicted";
                 result = true;
             }
         }
@@ -594,7 +581,6 @@ public class blackkingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x + 2, y - 1] == 5) && result == false)
             {
-                notifications.text = "Check Predicted";
                 result = true;
             }
         }
@@ -606,7 +592,6 @@ public class blackkingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x - 1, y + 2] == 5) && result == false)
             {
-                notifications.text = "Check Predicted";
                 result = true;
             }
         }
@@ -618,7 +603,6 @@ public class blackkingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x + 1, y + 2] == 5) && result == false)
             {
-                notifications.text = "Check Predicted";
                 result = true;
             }
         }
@@ -630,7 +614,6 @@ public class blackkingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x - 1, y - 2] == 5) && result == false)
             {
-                notifications.text = "Check Predicted";
                 result = true;
             }
         }
@@ -642,7 +625,6 @@ public class blackkingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x + 1, y - 2] == 5) && result == false)
             {
-                notifications.text = "Check Predicted";
                 result = true;
             }
         }

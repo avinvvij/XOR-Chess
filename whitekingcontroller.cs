@@ -57,299 +57,300 @@ public class whitekingcontroller : MonoBehaviour {
 
     public bool checkwhitecheck(int x, int y, int[,] cp , int from = 0)
     {
-        if (from == 0)
-            this.chesspositions = (int[,])chesscontroller.GetComponent<chesscontroller>().getchesspositions().Clone();
-        else
-            this.chesspositions = (int[,])cp.Clone();
-        //printchesspositions();
-        //print("here");
-        bool result = false;
-        int count = 1;
-        try
-        {
-            while ((chesspositions[x - count, y] == 0) && result == false)
+            if (from == 0)
+                this.chesspositions = (int[,])chesscontroller.GetComponent<chesscontroller>().getchesspositions().Clone();
+            else
+                this.chesspositions = (int[,])cp.Clone();
+            //printchesspositions();
+            //print("here");
+            bool result = false;
+            int count = 1;
+            try
             {
-                //it's a check to white king
-                //print("Im here: "+ chesspositions[xpos - count, ypos]);
-                count++;
+                while ((chesspositions[x - count, y] == 0) && result == false)
+                {
+                    //it's a check to white king
+                    //print("Im here: "+ chesspositions[xpos - count, ypos]);
+                    count++;
+                }
+
+                if (chesspositions[x - count, y] == 7 || chesspositions[x - count, y] == 8)
+                {
+                    notifications.text = (from == 0) ? notifications.text = "Check to white" : notifications.text;
+                    result = true;
+                }
+
+            }
+            catch (Exception e)
+            {
+                //print(e.StackTrace);
+            }
+            try
+            {
+                count = 1;
+                while ((chesspositions[x + count, y] == 0) && result == false)
+                {
+                    //it's a check to white king
+                    //print("Im here: " + chesspositions[xpos - count, ypos]);
+                    count++;
+                }
+
+                if (chesspositions[x + count, y] == 7 || chesspositions[x + count, y] == 8)
+                {
+                    notifications.text = (from == 0) ? notifications.text = "Check to white" : notifications.text;
+                    result = true;
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            try {
+                count = 1;
+                while ((chesspositions[x, y - count] == 0) && result == false)
+                {
+                    //it's a check to white king
+                    //print("Im here: " + chesspositions[xpos - count, ypos]);
+                    count++;
+                }
+
+                if (chesspositions[x, y - count] == 7 || chesspositions[x, y - count] == 8)
+                {
+                    notifications.text = (from == 0) ? notifications.text = "Check to white" : notifications.text;
+                    result = true;
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            try
+            {
+                count = 1;
+                while ((chesspositions[x, y + count] == 0) && result == false)
+                {
+                    //it's a check to white king
+                    //print("Im here: " + chesspositions[xpos - count, ypos]);
+                    count++;
+                }
+
+                if (chesspositions[x, y + count] == 7 || chesspositions[x, y + count] == 8)
+                {
+                    notifications.text = (from == 0) ? notifications.text = "Check to white" : notifications.text;
+                    result = true;
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            try
+            {
+                count = 1;
+                while ((chesspositions[x + count, y + count] == 0) && result == false)
+                {
+                    //it's a check to white king
+                    //print("Im here: " + chesspositions[xpos - count, ypos]);
+                    count++;
+                }
+
+                if (chesspositions[x + count, y + count] == 9 || chesspositions[x + count, y + count] == 8)
+                {
+                    notifications.text = (from == 0) ? notifications.text = "Check to white" : notifications.text;
+                    result = true;
+                }
+            }
+            catch (Exception e)
+            {
+
             }
 
-            if (chesspositions[x-count , y] == 7 || chesspositions[x-count , y] == 8)
+            try
             {
-                notifications.text = "Check To White";
-                result = true;
+                count = 1;
+                while ((chesspositions[x - count, y + count] == 0) && result == false)
+                {
+                    //it's a check to white king
+                    //print("Im here: " + chesspositions[xpos - count, ypos]);
+                    count++;
+                }
+
+                if (chesspositions[x - count, y + count] == 9 || chesspositions[x - count, y + count] == 8)
+                {
+                    notifications.text = (from == 0) ? notifications.text = "Check to white" : notifications.text;
+                    result = true;
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            try
+            {
+                count = 1;
+                while ((chesspositions[x + count, y - count] == 0) && result == false)
+                {
+                    //it's a check to white king
+                    //print("Im here: " + chesspositions[xpos - count, ypos]);
+                    count++;
+                }
+
+                if (chesspositions[x + count, y - count] == 9 || chesspositions[x + count, y - count] == 8)
+                {
+                    notifications.text = (from == 0) ? notifications.text = "Check to white" : notifications.text;
+                    result = true;
+                }
+            }
+            catch (Exception e)
+            {
+
             }
 
-        }
-        catch (Exception e)
-        {
-            //print(e.StackTrace);
-        }
-        try
-        {
-            count = 1;
-            while ((chesspositions[x + count, y] == 0) && result == false)
+            try
             {
-                //it's a check to white king
-                //print("Im here: " + chesspositions[xpos - count, ypos]);
-                count++;
+                count = 1;
+                while ((chesspositions[x - count, y - count] == 0) && result == false)
+                {
+                    //it's a check to white king
+                    //print("Im here: " + chesspositions[xpos - count, ypos]);
+                    count++;
+                }
+
+                if (chesspositions[x - count, y - count] == 9 || chesspositions[x - count, y - count] == 8)
+                {
+                    notifications.text = (from == 0) ? notifications.text = "Check to white" : notifications.text;
+                    result = true;
+                }
+            }
+            catch (Exception e)
+            {
+
             }
 
-            if (chesspositions[x + count, y] == 7 || chesspositions[x + count, y] == 8)
+            try
             {
-                notifications.text = "Check To White";
-                result = true;
-            }
-        }
-        catch(Exception e)
-        {
+                if ((chesspositions[x - 1, y - 1] == 6) && result == false)
+                {
+                    notifications.text = (from == 0) ? notifications.text = "Check to white" : notifications.text;
+                    result = true;
+                }
+            } catch (Exception e)
+            {
 
-        }
-        try {
-            count = 1;
-            while ((chesspositions[x, y-count]== 0) && result == false)
-            {
-                //it's a check to white king
-                //print("Im here: " + chesspositions[xpos - count, ypos]);
-                count++;
             }
 
-            if (chesspositions[x, y-count] == 7 || chesspositions[x, y-count] == 8)
+            try
             {
-                notifications.text = "Check To White";
-                result = true;
+                if ((chesspositions[x - 1, y + 1] == 6) && result == false)
+                {
+                    notifications.text = (from == 0) ? notifications.text = "Check to white" : notifications.text;
+                    result = true;
+                }
             }
-        }
-        catch(Exception e)
-        {
-
-        }
-        try
-        {
-            count = 1;
-            while ((chesspositions[x, y+count] == 0) && result == false)
+            catch (Exception e)
             {
-                //it's a check to white king
-                //print("Im here: " + chesspositions[xpos - count, ypos]);
-                count++;
+
             }
 
-            if (chesspositions[x, y+count] == 7 || chesspositions[x, y+count] == 8)
+            try
             {
-                notifications.text = "Check To White";
-                result = true;
+                if ((chesspositions[x - 2, y - 1] == 10) && result == false)
+                {
+                    notifications.text = (from == 0) ? notifications.text = "Check to white" : notifications.text;
+                    result = true;
+                }
             }
-        }
-        catch (Exception e)
-        {
-
-        }
-        try
-        {
-            count = 1;
-            while ((chesspositions[x+count, y + count] == 0 )&& result == false)
+            catch (Exception e)
             {
-                //it's a check to white king
-                //print("Im here: " + chesspositions[xpos - count, ypos]);
-                count++;
-            }
 
-            if (chesspositions[x+count, y + count] == 9 || chesspositions[x+count, y + count] == 8)
+            }
+            try
             {
-                notifications.text = "Check To White";
-                result = true;
+                if ((chesspositions[x - 2, y + 1] == 10) && result == false)
+                {
+                    notifications.text = (from == 0) ? notifications.text = "Check to white" : notifications.text;
+                    result = true;
+                }
             }
-        }
-        catch (Exception e)
-        {
-
-        }
-
-        try
-        {
-            count = 1;
-            while ((chesspositions[x - count, y + count] == 0) && result == false)
+            catch (Exception e)
             {
-                //it's a check to white king
-                //print("Im here: " + chesspositions[xpos - count, ypos]);
-                count++;
-            }
 
-            if (chesspositions[x - count, y + count] == 9 || chesspositions[x - count, y + count] == 8)
+            }
+            try
             {
-                notifications.text = "Check To White";
-                result = true;
+                if ((chesspositions[x + 2, y + 1] == 10) && result == false)
+                {
+                    notifications.text = (from == 0) ? notifications.text = "Check to white" : notifications.text;
+                    result = true;
+                }
             }
-        }
-        catch (Exception e)
-        {
-
-        }
-        try
-        {
-            count = 1;
-            while ((chesspositions[x + count, y - count] == 0) && result == false)
+            catch (Exception e)
             {
-                //it's a check to white king
-                //print("Im here: " + chesspositions[xpos - count, ypos]);
-                count++;
-            }
 
-            if (chesspositions[x + count, y - count] == 9 || chesspositions[x + count, y - count] == 8)
+            }
+            try
             {
-                notifications.text = "Check To White";
-                result = true;
+                if ((chesspositions[x + 2, y - 1] == 10) && result == false)
+                {
+                    notifications.text = (from == 0) ? notifications.text = "Check to white" : notifications.text;
+                    result = true;
+                }
             }
-        }
-        catch (Exception e)
-        {
-
-        }
-
-        try
-        {
-            count = 1;
-            while ((chesspositions[x - count, y - count] == 0) && result == false)
+            catch (Exception e)
             {
-                //it's a check to white king
-                //print("Im here: " + chesspositions[xpos - count, ypos]);
-                count++;
-            }
 
-            if (chesspositions[x - count, y - count] == 9 || chesspositions[x - count, y - count] == 8)
+            }
+            try
             {
-                notifications.text = "Check To White";
-                result = true;
+                if ((chesspositions[x - 1, y + 2] == 10) && result == false)
+                {
+                    notifications.text = (from == 0) ? notifications.text = "Check to white" : notifications.text;
+                    result = true;
+                }
             }
-        }
-        catch (Exception e)
-        {
-
-        }
-
-        try
-        {
-            if((chesspositions[x-1 , y-1] == 6) && result == false)
+            catch (Exception e)
             {
-                notifications.text = "Check To White";
-                result = true;
+
             }
-        }catch(Exception e)
-        {
-
-        }
-
-        try
-        {
-            if ((chesspositions[x - 1, y + 1] == 6) && result == false)
+            try
             {
-                notifications.text = "Check To White";
-                result = true;
+                if ((chesspositions[x + 1, y + 2] == 10) && result == false)
+                {
+                    notifications.text = (from == 0) ? notifications.text = "Check to white" : notifications.text;
+                    result = true;
+                }
             }
-        }
-        catch (Exception e)
-        {
-
-        }
-
-        try
-        {
-            if ((chesspositions[x - 2, y - 1] == 10 ) && result == false)
+            catch (Exception e)
             {
-                notifications.text = "Check To White";
-                result = true;
-            }
-        }
-        catch (Exception e)
-        {
 
-        }
-        try
-        {
-            if ((chesspositions[x - 2, y + 1] == 10 ) && result == false)
+            }
+            try
             {
-                notifications.text = "Check To White";
-                result = true;
+                if ((chesspositions[x - 1, y - 2] == 10) && result == false)
+                {
+                    notifications.text = (from == 0) ? notifications.text = "Check to white" : notifications.text;
+                    result = true;
+                }
             }
-        }
-        catch (Exception e)
-        {
-
-        }
-        try
-        {
-            if ((chesspositions[x + 2, y + 1] == 10 ) && result == false)
+            catch (Exception e)
             {
-                notifications.text = "Check To White";
-                result = true;
-            }
-        }
-        catch (Exception e)
-        {
 
-        }
-        try
-        {
-            if ((chesspositions[x + 2, y - 1] == 10 ) && result == false)
+            }
+            try
             {
-                notifications.text = "Check To White";
-                result = true;
+                if ((chesspositions[x + 1, y - 2] == 10) && result == false)
+                {
+                    notifications.text = (from == 0) ? notifications.text = "Check to white" : notifications.text;
+                    result = true;
+                }
             }
-        }
-        catch (Exception e)
-        {
-
-        }
-        try
-        {
-            if ((chesspositions[x - 1, y + 2] == 10 ) && result == false)
+            catch (Exception e)
             {
-                notifications.text = "Check To White";
-                result = true;
+
             }
-        }
-        catch (Exception e)
-        {
-
-        }
-        try
-        {
-            if ((chesspositions[x + 1, y + 2] == 10 ) && result == false)
-            {
-                notifications.text = "Check To White";
-                result = true;
-            }
-        }
-        catch (Exception e)
-        {
-
-        }
-        try
-        {
-            if ((chesspositions[x - 1, y - 2] == 10 ) && result == false)
-            {
-                notifications.text = "Check To White";
-                result = true;
-            }
-        }
-        catch (Exception e)
-        {
-
-        }
-        try
-        {
-            if ((chesspositions[x + 1, y - 2] == 10 ) && result == false)
-            {
-                notifications.text = "Check To White";
-                result = true;
-            }
-        }
-        catch (Exception e)
-        {
-
-        }
-
-        return result;
+            return result;
+        
+        
     }
 
 
@@ -374,7 +375,7 @@ public class whitekingcontroller : MonoBehaviour {
 
             if (cp[x - count, y] == 7 || cp[x - count, y] == 8)
             {
-                notifications.text = "Check predicted";
+                
                 result = true;
             }
 
@@ -395,7 +396,7 @@ public class whitekingcontroller : MonoBehaviour {
 
             if (cp[x + count, y] == 7 || cp[x + count, y] == 8)
             {
-                notifications.text = "Check predicted";
+                
                 result = true;
             }
         }
@@ -415,7 +416,7 @@ public class whitekingcontroller : MonoBehaviour {
 
             if (cp[x, y - count] == 7 || cp[x, y - count] == 8)
             {
-                notifications.text = "Check Predicted";
+                
                 result = true;
             }
         }
@@ -435,7 +436,7 @@ public class whitekingcontroller : MonoBehaviour {
 
             if (cp[x, y + count] == 7 || cp[x, y + count] == 8)
             {
-                notifications.text = "Check Predicted";
+                
                 result = true;
             }
         }
@@ -455,7 +456,7 @@ public class whitekingcontroller : MonoBehaviour {
 
             if (cp[x + count, y + count] == 9 || cp[x + count, y + count] == 8)
             {
-                notifications.text = "Check Predicted";
+                
                 result = true;
             }
         }
@@ -476,7 +477,7 @@ public class whitekingcontroller : MonoBehaviour {
 
             if (cp[x - count, y + count] == 9 || cp[x - count, y + count] == 8)
             {
-                notifications.text = "Check Predicted";
+                
                 result = true;
             }
         }
@@ -496,7 +497,7 @@ public class whitekingcontroller : MonoBehaviour {
 
             if (cp[x + count, y - count] == 9 || cp[x + count, y - count] == 8)
             {
-                notifications.text = "Check Predicted";
+                
                 result = true;
             }
         }
@@ -517,7 +518,7 @@ public class whitekingcontroller : MonoBehaviour {
 
             if (cp[x - count, y - count] == 9 || cp[x - count, y - count] == 8)
             {
-                notifications.text = "Check Predicted";
+                
                 result = true;
             }
         }
@@ -530,7 +531,7 @@ public class whitekingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x - 1, y - 1] == 6) && result == false)
             {
-                notifications.text = "Check Predicted";
+                
                 result = true;
             }
         }
@@ -543,7 +544,7 @@ public class whitekingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x - 1, y + 1] == 6) && result == false)
             {
-                notifications.text = "Check Predicted";
+                
                 result = true;
             }
         }
@@ -556,7 +557,7 @@ public class whitekingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x - 2, y - 1] == 10) && result == false)
             {
-                notifications.text = "Check Predicted";
+                
                 result = true;
             }
         }
@@ -568,7 +569,7 @@ public class whitekingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x - 2, y + 1] == 10) && result == false)
             {
-                notifications.text = "Check Predicted";
+                
                 result = true;
             }
         }
@@ -580,7 +581,7 @@ public class whitekingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x + 2, y + 1] == 10) && result == false)
             {
-                notifications.text = "Check Predicted";
+                
                 result = true;
             }
         }
@@ -592,7 +593,7 @@ public class whitekingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x + 2, y - 1] == 10) && result == false)
             {
-                notifications.text = "Check Predicted";
+                
                 result = true;
             }
         }
@@ -604,7 +605,7 @@ public class whitekingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x - 1, y + 2] == 10) && result == false)
             {
-                notifications.text = "Check Predicted";
+                
                 result = true;
             }
         }
@@ -616,7 +617,7 @@ public class whitekingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x + 1, y + 2] == 10) && result == false)
             {
-                notifications.text = "Check Predicted";
+                
                 result = true;
             }
         }
@@ -628,7 +629,7 @@ public class whitekingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x - 1, y - 2] == 10) && result == false)
             {
-                notifications.text = "Check Predicted";
+                
                 result = true;
             }
         }
@@ -640,7 +641,7 @@ public class whitekingcontroller : MonoBehaviour {
         {
             if ((chesspositions[x + 1, y - 2] == 10) && result == false)
             {
-                notifications.text = "Check Predicted";
+                
                 result = true;
             }
         }
@@ -670,6 +671,139 @@ public class whitekingcontroller : MonoBehaviour {
             {
                 Debug.Log(i + " " + j + " " + chesspositions[i, j]);
             }
+        }
+    }
+
+    public bool checkCheckMate()
+    {
+        int resultcount = 0;
+        int[,] cmchesspositions = (int[,])chesscontroller.GetComponent<chesscontroller>().getchesspositions().Clone();
+        for(int i = 0; i < 8; i++)
+        {
+            for(int j = 0; j < 8; j++)
+            {
+                switch (cmchesspositions[i,j])
+                {
+                    case 1:
+                        if (resultcount == 0)
+                        {
+                            if (i == 6)
+                            {
+                                //pawn gonna play first time
+                                if (cmchesspositions[i - 1, j] >= 1 && cmchesspositions[i - 1, j] <= 10 && cmchesspositions[i - 1, j] != 20 && cmchesspositions[i - 1, j] != 21)
+                                {
+                                    
+                                }
+                                if (cmchesspositions[i - 1, j] == 0)
+                                {
+                                    if (predictwhitediffcheck(i - 1, j, i, j, cmchesspositions[i, j]) == false)
+                                    {
+                                        resultcount++;
+                                    }
+                                    if (cmchesspositions[i - 2, j] == 0)
+                                    {
+                                        if (predictwhitediffcheck(i - 2, j, i, j, cmchesspositions[i, j]) == false)
+                                        {
+                                            resultcount++;
+                                        }
+                                    }
+                                }
+
+                                try
+                                {
+                                    if (cmchesspositions[i - 1, j - 1] >= 6 && cmchesspositions[i - 1, j - 1] <= 10  )
+                                    {
+                                        if(predictwhitediffcheck(i - 1, j - 1, i, j, cmchesspositions[i, j]) == false)
+                                        {
+                                            resultcount++;
+                                        }
+                                    }
+                                }
+                                catch (Exception e)
+                                {
+
+                                }
+                                try
+                                {
+                                    if (cmchesspositions[i - 1, j + 1] >= 6 && cmchesspositions[i + 1, j - 1] <= 10 )
+                                    {
+                                        if (predictwhitediffcheck(i - 1, j + 1, i, j, cmchesspositions[i, j]) == false)
+                                        {
+                                            resultcount++;
+                                        }
+                                    }
+                                }
+                                catch (Exception e)
+                                {
+
+                                }
+                            }
+                            else
+                            {
+                                //pawn has alerady been moved once
+                                
+                                try
+                                {
+                                    if (cmchesspositions[i - 1, j] == 0 )
+                                    {
+                                        if (predictwhitediffcheck(i - 1, j, i, j, cmchesspositions[i, j]) == false)
+                                        {
+                                            resultcount++;
+                                        }
+                                    }
+                                }
+                                catch (Exception e)
+                                {
+                                }
+
+                                try
+                                {
+                                    if (cmchesspositions[i - 1, j - 1] >= 6 && chesspositions[i - 1, j - 1] <= 10 )
+                                    {
+                                        if(predictwhitediffcheck(i - 1, j - 1, i, j, cmchesspositions[i, j]) == false)
+                                        {
+                                            resultcount++;
+                                        }
+                                    }
+                                }
+                                catch (Exception e)
+                                {
+
+                                }
+                                try
+                                {
+                                    if (cmchesspositions[i - 1, j + 1] >= 6 && chesspositions[i + 1, j - 1] <= 10)
+                                    {
+                                        if (predictwhitediffcheck(i - 1, j + 1, i, j, cmchesspositions[i, j]) == false)
+                                        {
+                                            resultcount++;
+                                        }
+                                    }
+                                }
+                                catch (Exception e)
+                                {
+
+                                }
+                            }
+                        }
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                }
+            }
+        }
+        if(resultcount >= 1)
+        {
+            return false;
+        }else
+        {
+            return true;
         }
     }
 

@@ -2,6 +2,7 @@
 	using System.Collections.Generic;
 	using UnityEngine;
 	using System;
+    using UnityEngine.UI;
 
 	public class chesscontroller : MonoBehaviour {
 
@@ -16,7 +17,8 @@
 		Hashtable ht; 
 		bool whiteplay = true;
         public float timeoftransition=1.0f;
-        GameObject whiteking,blackking; 
+        GameObject whiteking,blackking;
+        public Text notifications;
         
 
 		// Use this for initialization
@@ -125,8 +127,9 @@
                 }
 
 					if (hit.collider.tag == "possibleposition") {
-                        //move the selected gameobject to that position
-                        if (selectedobject.tag == "whitepawn") {
+                    //move the selected gameobject to that position
+                    notifications.text = "";
+                    if (selectedobject.tag == "whitepawn") {
                             for (int i = 0; i < 8; i++) {
                                 for (int j = 0; j < 8; j++) {
                                     //print (boardvectors [i, j] + " " + hit.collider.gameObject.transform.position);
@@ -620,6 +623,8 @@
                             whiteking.GetComponent<whitekingcontroller>().checkwhitecheck(whiteking.GetComponent<whitekingcontroller>().getxpos(), whiteking.GetComponent<whitekingcontroller>().getypos(), null);
                         }
 
+                    //notifications.text = (whiteplay == true) ? "White To Play" : "Black To Play";
+                    
                     //printchesspositions();
 
                 }
@@ -699,12 +704,14 @@
 					Destroy (temps [i]);
                 if (chesspositions[pc.getxpos() - 1, pc.getypos()] >= 1 && chesspositions[pc.getxpos() - 1, pc.getypos()] <= 10 && chesspositions[pc.getxpos() - 1, pc.getypos()] != 20 && chesspositions[pc.getxpos() - 1, pc.getypos()] != 21)
                 {
-            } if (chesspositions[pc.getxpos() - 1, pc.getypos()] == 0 && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(pc.getxpos() - 1, pc.getypos() , pc.getxpos() , pc.getypos() , pc.getstatus()) == false)
+            } if (chesspositions[pc.getxpos() - 1, pc.getypos()] == 0)
             {
-                GameObject temp;
-                Vector3 currentposition = pc.getcurrentposition();
-                temp = (GameObject)Instantiate(possibleposition, new Vector3(currentposition.x, currentposition.y, currentposition.z + 6f), Quaternion.Euler(0f, 0f, 0f));
-                temp.tag = "possibleposition";
+                if (whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(pc.getxpos() - 1, pc.getypos(), pc.getxpos(), pc.getypos(), pc.getstatus()) == false) {
+                    GameObject temp;
+                    Vector3 currentposition = pc.getcurrentposition();
+                    temp = (GameObject)Instantiate(possibleposition, new Vector3(currentposition.x, currentposition.y, currentposition.z + 6f), Quaternion.Euler(0f, 0f, 0f));
+                    temp.tag = "possibleposition";
+                }
                 if (chesspositions[pc.getxpos() - 2, pc.getypos()] == 0 && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(pc.getxpos() - 2, pc.getypos(), pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
                 {
                     GameObject temp1;
@@ -804,12 +811,15 @@
             if (chesspositions[pc.getxpos() + 1, pc.getypos()] >= 1 && chesspositions[pc.getxpos() + 1, pc.getypos()] <= 10 && chesspositions[pc.getxpos() + 1, pc.getypos()] !=20 && chesspositions[pc.getxpos() + 1, pc.getypos()] != 21)
             {
             }
-            if (chesspositions[pc.getxpos() + 1, pc.getypos()] == 0 && blackking.GetComponent<blackkingcontroller>().predictblackdiffcheck(pc.getxpos() + 1, pc.getypos(), pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
+            if (chesspositions[pc.getxpos() + 1, pc.getypos()] == 0 )
             {
-                GameObject temp;
-                Vector3 currentposition = pc.getcurrentposition();
-                temp = (GameObject)Instantiate(possibleposition, new Vector3(currentposition.x, currentposition.y, currentposition.z - 6f), Quaternion.Euler(0f, 0f, 0f));
-                temp.tag = "possibleposition";
+                if (blackking.GetComponent<blackkingcontroller>().predictblackdiffcheck(pc.getxpos() + 1, pc.getypos(), pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
+                {
+                    GameObject temp;
+                    Vector3 currentposition = pc.getcurrentposition();
+                    temp = (GameObject)Instantiate(possibleposition, new Vector3(currentposition.x, currentposition.y, currentposition.z - 6f), Quaternion.Euler(0f, 0f, 0f));
+                    temp.tag = "possibleposition";
+                }
                 if (chesspositions[pc.getxpos() + 2, pc.getypos()] == 0 && blackking.GetComponent<blackkingcontroller>().predictblackdiffcheck(pc.getxpos() + 2, pc.getypos(), pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
                 {
                     GameObject temp1;
