@@ -736,7 +736,7 @@
             }
             try
             {
-                if (chesspositions[pc.getxpos() - 1, pc.getypos() + 1] >= 6 && chesspositions[pc.getxpos() + 1, pc.getypos() - 1] <= 10 && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(pc.getxpos() - 1, pc.getypos() + 1 , pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
+                if (chesspositions[pc.getxpos() - 1, pc.getypos() + 1] >= 6 && chesspositions[pc.getxpos() - 1, pc.getypos() + 1] <= 10 && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(pc.getxpos() - 1, pc.getypos() + 1 , pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
                 {
                     GameObject temp;
                     Vector3 currentposition = pc.getcurrentposition();
@@ -783,7 +783,7 @@
             }
             try
             {
-                if (chesspositions[pc.getxpos() - 1, pc.getypos() + 1] >= 6 && chesspositions[pc.getxpos() + 1, pc.getypos() - 1] <= 10 && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(pc.getxpos() - 1, pc.getypos() + 1, pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
+                if (chesspositions[pc.getxpos() - 1, pc.getypos() + 1] >= 6 && chesspositions[pc.getxpos() - 1, pc.getypos() + 1] <= 10 && whiteking.GetComponent<whitekingcontroller>().predictwhitediffcheck(pc.getxpos() - 1, pc.getypos() + 1, pc.getxpos(), pc.getypos(), pc.getstatus()) == false)
                 {
                     GameObject temp;
                     Vector3 currentposition = pc.getcurrentposition();
