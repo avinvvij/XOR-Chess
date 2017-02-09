@@ -1105,12 +1105,12 @@ public class whitekingcontroller : MonoBehaviour {
                             //top possiblepositions
                             try
                             {
-                                while ((chesspositions[i - count, j] < 1 || chesspositions[i - count, j] > 5) && chesspositions[i - count, j] != 20)
+                                while ((cmchesspositions[i - count, j] < 1 || cmchesspositions[i - count, j] > 5) && cmchesspositions[i - count, j] != 20)
                                 {
                                     if (predictwhitediffcheck(i - count, j, i, j, cmchesspositions[i,j],true) == false)
                                     {
                                         resultcount++;
-                                        if (chesspositions[i - count, j] == 6 || chesspositions[i - count, j] == 7 || chesspositions[i - count, j] == 8 || chesspositions[i - count, j] == 9 || chesspositions[i - count, j] == 10)
+                                        if (cmchesspositions[i - count, j] == 6 || cmchesspositions[i - count, j] == 7 || cmchesspositions[i - count, j] == 8 || cmchesspositions[i - count, j] == 9 || cmchesspositions[i - count, j] == 10)
                                         {
                                             break;
                                         }
@@ -1125,12 +1125,12 @@ public class whitekingcontroller : MonoBehaviour {
                             try
                             {
                                 count = 1;
-                                while ((chesspositions[i + count, j] < 1 || chesspositions[i + count, j] > 5) && chesspositions[i + count, j] != 20)
+                                while ((cmchesspositions[i + count, j] < 1 || cmchesspositions[i + count, j] > 5) && cmchesspositions[i + count, j] != 20)
                                 {
                                     if (predictwhitediffcheck(i + count, j, i, j, cmchesspositions[i,j] , true) == false)
                                     {
                                         resultcount++;
-                                        if (chesspositions[i + count, j] == 6 || chesspositions[i + count, j] == 7 || chesspositions[i + count, j] == 8 || chesspositions[i + count, j] == 9 || chesspositions[i + count, j] == 10)
+                                        if (cmchesspositions[i + count, j] == 6 || cmchesspositions[i + count, j] == 7 || cmchesspositions[i + count, j] == 8 || cmchesspositions[i + count, j] == 9 || cmchesspositions[i + count, j] == 10)
                                         {
                                             break;
                                         }
@@ -1146,12 +1146,12 @@ public class whitekingcontroller : MonoBehaviour {
                             try
                             {
                                 count = 1;
-                                while ((chesspositions[i, j - count] < 1 || chesspositions[i, j - count] > 5) && chesspositions[i, j - count] != 20)
+                                while ((cmchesspositions[i, j - count] < 1 || cmchesspositions[i, j - count] > 5) && cmchesspositions[i, j - count] != 20)
                                 {
                                     if (predictwhitediffcheck(i, j - count, i, j, cmchesspositions[i,j] , true) == false)
                                     {
                                         resultcount++;
-                                        if (chesspositions[i, j - count] == 6 || chesspositions[i, j - count] == 7 || chesspositions[i, j - count] == 8 || chesspositions[i, j - count] == 9 || chesspositions[i, j - count] == 10)
+                                        if (cmchesspositions[i, j - count] == 6 || cmchesspositions[i, j - count] == 7 || cmchesspositions[i, j - count] == 8 || cmchesspositions[i, j - count] == 9 || cmchesspositions[i, j - count] == 10)
                                         {
                                             break;
                                         }
@@ -1167,12 +1167,12 @@ public class whitekingcontroller : MonoBehaviour {
                             try
                             {
                                 count = 1;
-                                while ((chesspositions[i, j + count] < 1 || chesspositions[i, j + count] > 5) && chesspositions[i, j + count] != 20)
+                                while ((cmchesspositions[i, j + count] < 1 || cmchesspositions[i, j + count] > 5) && cmchesspositions[i, j + count] != 20)
                                 {
                                     if (predictwhitediffcheck(i, j + count, i, j, cmchesspositions[i,j]) == false)
                                     {
                                         resultcount++;
-                                        if (chesspositions[i, j + count] == 6 || chesspositions[i, j + count] == 7 || chesspositions[i, j + count] == 8 || chesspositions[i, j + count] == 9 || chesspositions[i, j + count] == 10)
+                                        if (cmchesspositions[i, j + count] == 6 || cmchesspositions[i, j + count] == 7 ||cmchesspositions[i, j + count] == 8 || cmchesspositions[i, j + count] == 9 || cmchesspositions[i, j + count] == 10)
                                         {
                                             
                                             break;
@@ -1195,12 +1195,12 @@ public class whitekingcontroller : MonoBehaviour {
                             //top possiblepositions
                             try
                             {
-                                while ((chesspositions[i - count, j + count] < 1 || chesspositions[i - count, j + count] > 5) && chesspositions[i - count, j + count] != 20)
+                                while ((cmchesspositions[i - count, j + count] < 1 || cmchesspositions[i - count, j + count] > 5) && cmchesspositions[i - count, j + count] != 20)
                                 {
                                     if (predictwhitediffcheck(i - count, j + count, i, j, cmchesspositions[i, j], true) == false)
                                     {
                                         resultcount++;
-                                        if (chesspositions[i - count, j + count] >= 6 && chesspositions[i - count, j + count] <= 10)
+                                        if (cmchesspositions[i - count, j + count] >= 6 && cmchesspositions[i - count, j + count] <= 10)
                                         {
                                             break;
                                         }
@@ -1215,12 +1215,12 @@ public class whitekingcontroller : MonoBehaviour {
                             try
                             {
                                 count = 1;
-                                while ((chesspositions[i - count, j - count] < 1 || chesspositions[i - count, j - count] > 5) && chesspositions[i - count, j - count] != 20)
+                                while ((cmchesspositions[i - count, j - count] < 1 || cmchesspositions[i - count, j - count] > 5) && cmchesspositions[i - count, j - count] != 20)
                                 {
                                     if (predictwhitediffcheck(i - count, j - count, i, j, cmchesspositions[i, j], true) == false)
                                     {
                                         resultcount++;
-                                        if (chesspositions[i - count, j - count] >= 6 && chesspositions[i - count, j - count] <= 10)
+                                        if (cmchesspositions[i - count, j - count] >= 6 && cmchesspositions[i - count, j - count] <= 10)
                                         {
                                             break;
                                         }
@@ -1235,12 +1235,12 @@ public class whitekingcontroller : MonoBehaviour {
                             try
                             {
                                 count = 1;
-                                while ((chesspositions[i + count, j - count] < 1 || chesspositions[i + count, j - count] > 5) && chesspositions[i + count, j - count] != 20)
+                                while ((cmchesspositions[i + count, j - count] < 1 || cmchesspositions[i + count, j - count] > 5) && cmchesspositions[i + count, j - count] != 20)
                                 {
                                     if (predictwhitediffcheck(i + count, j - count, i, j, cmchesspositions[i, j], true) == false)
                                     {
                                         resultcount++;
-                                        if (chesspositions[i + count, j - count] >= 6 && chesspositions[i + count, j - count] <= 10)
+                                        if (cmchesspositions[i + count, j - count] >= 6 && cmchesspositions[i + count, j - count] <= 10)
                                         {
                                             break;
                                         }
@@ -1256,12 +1256,12 @@ public class whitekingcontroller : MonoBehaviour {
                             try
                             {
                                 count = 1;
-                                while ((chesspositions[i + count, j + count] < 1 || chesspositions[i + count, j + count] > 5) && chesspositions[i + count, j + count] != 20)
+                                while ((cmchesspositions[i + count, j + count] < 1 || cmchesspositions[i + count, j + count] > 5) && cmchesspositions[i + count, j + count] != 20)
                                 {
                                     if (predictwhitediffcheck(i + count, j + count, i, j, cmchesspositions[i, j], true) == false)
                                     {
                                         resultcount++;
-                                        if (chesspositions[i + count, j + count] >= 6 && chesspositions[i + count, j + count] <= 10)
+                                        if (cmchesspositions[i + count, j + count] >= 6 && cmchesspositions[i + count, j + count] <= 10)
                                         {
                                             break;
                                         }
@@ -1277,12 +1277,12 @@ public class whitekingcontroller : MonoBehaviour {
                             try
                             {
                                 count = 1;
-                                while ((chesspositions[i - count, j] < 1 || chesspositions[i - count, j] > 5) && chesspositions[i - count, j] != 20)
+                                while ((cmchesspositions[i - count, j] < 1 || cmchesspositions[i - count, j] > 5) && cmchesspositions[i - count, j] != 20)
                                 {
                                     if (predictwhitediffcheck(i - count, j, i, j, cmchesspositions[i, j], true) == false)
                                     {
                                         resultcount++;
-                                        if (chesspositions[i - count, j] >= 6 && chesspositions[i - count, j] <= 10)
+                                        if (cmchesspositions[i - count, j] >= 6 && cmchesspositions[i - count, j] <= 10)
                                         {
                                             break;
                                         }
@@ -1297,12 +1297,12 @@ public class whitekingcontroller : MonoBehaviour {
                             try
                             {
                                 count = 1;
-                                while ((chesspositions[i + count, j] < 1 || chesspositions[i + count, j] > 5) && chesspositions[i + count, j] != 20)
+                                while ((cmchesspositions[i + count, j] < 1 || cmchesspositions[i + count, j] > 5) && cmchesspositions[i + count, j] != 20)
                                 {
                                     if (predictwhitediffcheck(i + count, j, i, j, cmchesspositions[i, j], true) == false)
                                     {
                                         resultcount++;
-                                        if (chesspositions[i + count, j] >= 6 && chesspositions[i + count, j] <= 10)
+                                        if (cmchesspositions[i + count, j] >= 6 && cmchesspositions[i + count, j] <= 10)
                                         {
                                             break;
                                         }
@@ -1317,12 +1317,12 @@ public class whitekingcontroller : MonoBehaviour {
                             try
                             {
                                 count = 1;
-                                while ((chesspositions[i, j - count] < 1 || chesspositions[i, j - count] > 5) && chesspositions[i, j - count] != 20)
+                                while ((cmchesspositions[i, j - count] < 1 || cmchesspositions[i, j - count] > 5) && cmchesspositions[i, j - count] != 20)
                                 {
                                     if (predictwhitediffcheck(i, j - count, i, j, cmchesspositions[i, j], true) == false)
                                     {
                                         resultcount++;
-                                        if (chesspositions[i, j - count] >= 6 && chesspositions[i, j - count] <= 10)
+                                        if (cmchesspositions[i, j - count] >= 6 && cmchesspositions[i, j - count] <= 10)
                                         {
                                             break;
                                         }
@@ -1337,12 +1337,12 @@ public class whitekingcontroller : MonoBehaviour {
                             try
                             {
                                 count = 1;
-                                while ((chesspositions[i, j + count] < 1 || chesspositions[i, j + count] > 5) && chesspositions[i, j + count] != 20)
+                                while ((cmchesspositions[i, j + count] < 1 || cmchesspositions[i, j + count] > 5) && cmchesspositions[i, j + count] != 20)
                                 {
                                     if (predictwhitediffcheck(i, j + count, i, j, cmchesspositions[i, j], true) == false)
                                     {
                                         resultcount++;
-                                        if (chesspositions[i, j + count] >= 6 && chesspositions[i, j + count] <= 10)
+                                        if (cmchesspositions[i, j + count] >= 6 && cmchesspositions[i, j + count] <= 10)
                                         {
                                             break;
                                         }
@@ -1364,12 +1364,12 @@ public class whitekingcontroller : MonoBehaviour {
                             //top possiblepositions
                             try
                             {
-                                while ((chesspositions[i - count, j + count] < 1 || chesspositions[i - count, j + count] > 5) && chesspositions[i - count, j + count] != 20)
+                                while ((cmchesspositions[i - count, j + count] < 1 || cmchesspositions[i - count, j + count] > 5) && cmchesspositions[i - count, j + count] != 20)
                                 {
                                     if (predictwhitediffcheck(i - count, j + count, i, j, cmchesspositions[i,j] , true) == false)
                                     {
                                         resultcount++;
-                                        if (chesspositions[i - count, j + count] >= 6 && chesspositions[i - count, j + count] <= 10)
+                                        if (cmchesspositions[i - count, j + count] >= 6 && cmchesspositions[i - count, j + count] <= 10)
                                         {
                                             break;
                                         }
@@ -1384,7 +1384,7 @@ public class whitekingcontroller : MonoBehaviour {
                             try
                             {
                                 count = 1;
-                                while ((chesspositions[i - count, j - count] < 1 || chesspositions[i - count, j - count] > 5) && chesspositions[i - count, j - count] != 20)
+                                while ((cmchesspositions[i - count, j - count] < 1 || cmchesspositions[i - count, j - count] > 5) && cmchesspositions[i - count, j - count] != 20)
                                 {
                                     if (predictwhitediffcheck(i - count, j - count, i, j, cmchesspositions[i,j] , true) == false)
                                     {
@@ -1445,6 +1445,122 @@ public class whitekingcontroller : MonoBehaviour {
                         }
                         break;
                     case 5:
+                        if(resultcount == 0)
+                        {
+                            try
+                            {
+                                if ((chesspositions[i - 2, j + 1] < 1 || chesspositions[i - 2, j + 1] > 5) && chesspositions[i - 2, j + 1] != 20)
+                                {
+                                    if (predictwhitediffcheck(i - 2, j + 1, i, j, cmchesspositions[i,j] , true) == false)
+                                    {
+                                        resultcount++;
+                                    }
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                            }
+                            try
+                            {
+                                if ((chesspositions[i - 2, j - 1] < 1 || chesspositions[i - 2, j - 1] > 5) && chesspositions[i - 2, j - 1] != 20)
+                                {
+                                    if (predictwhitediffcheck(i - 2, j - 1, i, j, cmchesspositions[i,j] , true) == false)
+                                    {
+                                        resultcount++;
+                                    }
+                                }
+                            }
+                            catch (Exception e)
+                            {
+
+                            }
+
+                            try
+                            {
+                                if ((chesspositions[i - 1, j - 2] < 1 || chesspositions[i - 1, j - 2] > 5) && chesspositions[i - 1, j - 2] != 20)
+                                {
+                                    if (predictwhitediffcheck(i - 1, j - 2, i, j, cmchesspositions[i,j] , true) == false)
+                                    {
+                                        resultcount++;
+                                    }
+                                }
+                            }
+                            catch (Exception e)
+                            {
+
+                            }
+                            try
+                            {
+                                if ((chesspositions[i - 1, j + 2] < 1 || chesspositions[i - 1, j + 2] > 5) && chesspositions[i - 1, j + 2] != 20)
+                                {
+                                    if (predictwhitediffcheck(i - 1, j + 2, i, j, cmchesspositions[i,j] , true) == false)
+                                    {
+                                        resultcount++;
+                                    }
+                                }
+                            }
+                            catch (Exception e)
+                            {
+
+                            }
+                            try
+                            {
+                                if ((chesspositions[i + 2, j + 1] < 1 || chesspositions[i + 2, j + 1] > 5) && chesspositions[i + 2, j + 1] != 20)
+                                {
+                                    if (predictwhitediffcheck(i + 2, j + 1, i, j, cmchesspositions[i,j] , true) == false)
+                                    {
+                                        resultcount++;
+                                    }
+                                }
+                            }
+                            catch (Exception e)
+                            {
+
+                            }
+                            try
+                            {
+                                if ((chesspositions[i + 2, j - 1] < 1 || chesspositions[i + 2, j - 1] > 5) && chesspositions[i + 2, j - 1] != 20)
+                                {
+                                    if (predictwhitediffcheck(i + 2, j - 1, i, j, cmchesspositions[i,j] , true) == false)
+                                    {
+                                        resultcount++;
+                                    }
+                                }
+                            }
+                            catch (Exception e)
+                            {
+
+                            }
+                            try
+                            {
+                                if ((chesspositions[i + 1, j + 2] < 1 || chesspositions[i + 1, j + 2] > 5) && chesspositions[i + 1, j + 2] != 20)
+                                {
+                                    if (predictwhitediffcheck(i + 1, j + 2, i, j, cmchesspositions[i,j] , true) == false)
+                                    {
+                                        resultcount++;
+                                    }
+                                }
+                            }
+                            catch (Exception e)
+                            {
+
+                            }
+                            try
+                            {
+                                if ((chesspositions[i + 1, j - 2] < 1 || chesspositions[i + 1, j - 2] > 5) && chesspositions[i + 1, j - 2] != 20)
+                                {
+                                    if (predictwhitediffcheck(i + 1, j - 2, i, j, cmchesspositions[i,j] , true) == false)
+                                    {
+                                        resultcount++;
+                                    }
+                                }
+                            }
+                            catch (Exception e)
+                            {
+
+                            }
+                        }
+
                         break;
                 }
             }
@@ -1456,7 +1572,7 @@ public class whitekingcontroller : MonoBehaviour {
         }else
         {
             notifications.text = "You are check mate";
-            return true;
+            return false;
         }
     }
 
